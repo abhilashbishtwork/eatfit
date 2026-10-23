@@ -1,0 +1,450 @@
+"""Builds the simple 2-page Eatfit site (Home + Menu).
+
+Menu comes from build/menu_live.tsv (category, item, units sold in the last
+7 days, pulled from ClickHouse). Re-pull that file and run:
+    python3 build/generate.py
+"""
+import csv
+import re
+import json
+import os
+from datetime import date
+from html import escape
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DOMAIN = "https://www.eatfit.in"
+TODAY = date.today().isoformat()
+
+ORDER = {
+    "Swiggy": "https://www.swiggy.com/direct/brand/76139?source=swiggy-direct&subSource=generic",
+    "Zomato": "https://link.zomato.com/xqzv/rx68ggmv",
+    "Ownly": "https://ownly.food/app/brand/BR112474",
+}
+INSTAGRAM = "https://www.instagram.com/the_eatfit"
+BLOG = "https://blog.eatfit.in/"
+CITIES = ["Bengaluru", "Delhi NCR", "Hyderabad", "Mumbai", "Pune", "Chandigarh", "Chennai", "Coimbatore"]
+ADDRESS = ["Curefoods India Ltd.", "No. 72/4, Roopena Agrahara,", "Hosur Road, Madiwala Post,",
+           "Bengaluru, Karnataka 560068"]
+TAGLINE = ("Healthy, yummy, honest and wholesome Indian food, made with real ingredients, "
+           "zero trans fat and lots of love.")
+
+# Menu sections, in display order: (title, source categories, note)
+SECTIONS = [
+    ("Fusion Bowls", ["Fusion Bowls"], "Global flavours, balanced bowls."),
+    ("Homely Bowls", ["Homely Bowls"], "Dal-chawal, rajma-chawal, the everyday classics."),
+    ("Curry & Rice Bowls", ["Indian Bowls"], "Your favourite curry with steamed rice."),
+    ("Khichdi", ["Homely Khichdi"], "Comforting, protein-rich, never boring."),
+    ("Curries", ["Fit Curry", "Soya Chaap Gravies"], "Calorie-counted gravies to pair with rice or roti."),
+    ("Curd Rice", ["Classic Curd Rice"], "Cool, light and South Indian."),
+    ("All-Day Breakfast", ["All Day Breakfast"], "Dosa and idli, any time of day."),
+    ("Sugar-free Ice Cream", ["Guiltfree Icecream by Papacream"], "Guilt-free desserts by Papacream."),
+    ("Drinks", ["Beverages", "Juices", "LQD Salad"], "Shakes, juices and coolers."),
+]
+SKIP_ITEMS = {"Diet Coke"}
+NON_VEG = ("chicken", "meatball", "carne", "egg", "mutton", "fish")
+TIDY = {
+    "Jain Vegetable Khichdi (Shravan Special)": "Jain Vegetable Khichdi",
+    "Lasooni Methi Paneer with Steam rice": "Lasooni Methi Paneer with Steam Rice",
+    "Steam Rice with Kadhai Soya chaap": "Steam Rice with Kadhai Soya Chaap",
+    "Italian Chunky Veggie bowl": "Italian Chunky Veggie Bowl",
+    "Protein Milk Shake -Chocolate (25g)": "Protein Milkshake, Chocolate (25g protein)",
+    "Protein Milk Shake -Vanilla (25g)": "Protein Milkshake, Vanilla (25g protein)",
+    "Idli-Sambhar with Chutney (Gluten-Free)": "Idli Sambar with Chutney (Gluten-free)",
+    "Idli and Vada with Sambar": "Idli & Vada with Sambar",
+    "LQD Salad High Fibre Drink": "LQD Salad, High-Fibre Drink",
+    "Sugarfree Belgian Choco Chunk 100ml": "Belgian Choco Chunk (100ml)",
+    "Sugarfree Strawberry Crumble 100ml": "Strawberry Crumble (100ml)",
+    "Sugarfree Espresso Cookie 100ml": "Espresso Cookie (100ml)",
+    "Sugarfree Vanilla Mudpie 100ml": "Vanilla Mudpie (100ml)",
+}
+
+PHILOSOPHY = [
+    ("Better processes", ["ISO-certified kitchens", "Farm-to-fork tracking",
+                          "Calorie counted", "Nutritionist approved"]),
+    ("Better ingredients", ["Zero trans fats", "Zero chemicals",
+                            "Whole grains", "Zero deep frying"]),
+]
+FAQ = [
+    ("What is Eatfit?",
+     "Eatfit, by Curefoods, serves honest, clean and tasty Indian and global comfort meals made "
+     "with healthy ingredients and no preservatives."),
+    ("Is Eatfit food calorie-counted?",
+     "Yes. Our dishes are calorie-counted and nutritionist-approved, so you can make better food choices."),
+    ("Where can I order?",
+     "On Swiggy, Zomato and Ownly, in " + ", ".join(CITIES[:-1]) + " and " + CITIES[-1] + "."),
+    ("Are there vegetarian options?",
+     "Most of the menu is vegetarian, including Jain khichdi and sugar-free desserts."),
+]
+
+
+def tidy(name):
+    return TIDY.get(name, name.replace("Sugarfree ", ""))
+
+
+def load_menu():
+    rows = list(csv.reader(open(os.path.join(ROOT, "build", "menu_live.tsv")), delimiter="\t"))
+    by_cat = {}
+    for cat, item, units in rows:
+        if item in SKIP_ITEMS:
+            continue
+        by_cat.setdefault(cat, []).append((item, int(units)))
+    sections = []
+    for title, cats, note in SECTIONS:
+        items = sorted((i for c in cats for i in by_cat.get(c, [])), key=lambda x: -x[1])
+        if items:
+            sections.append((title, note, items))
+    return sections
+
+
+def is_veg(name):
+    return not re.search(r"\b(" + "|".join(NON_VEG) + r")\b", name.lower())
+
+
+def slug(s):
+    return s.lower().replace(" & ", "-").replace(" ", "-")
+
+
+CSS = """
+:root{--navy:#1F2A5C;--pink:#E4007C;--pink-dark:#B80064;--teal:#17A2B4;--teal-tint:#E3F5F7;
+--plum:#962B7F;--ink:#1F2A5C;--muted:#5A6079;--bg:#FFFFFF;--soft:#F5F6FA;--line:#E3E5EE;
+--veg:#1E8E3E;--nonveg:#B3261E;
+--head:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+--body:"Nunito Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--head);line-height:1.15;margin:0 0 .45em;color:var(--navy)}
+h1{font-size:clamp(2.1rem,5.5vw,3.5rem);font-weight:700}
+h2{font-size:clamp(1.6rem,3.6vw,2.3rem);font-weight:700}
+h3{font-size:1.15rem;font-weight:600}
+.accent{color:var(--pink)}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+header img{height:34px;width:auto}
+nav{display:flex;align-items:center;gap:20px}
+nav a{text-decoration:none;font-family:var(--head);font-weight:500;font-size:.95rem}
+nav a[aria-current]{color:var(--pink)}
+.btn{display:inline-block;background:var(--pink);color:#fff;text-decoration:none;font-family:var(--head);
+font-weight:600;font-size:.95rem;padding:11px 22px;border-radius:999px;border:2px solid var(--pink);transition:background .15s}
+.btn:hover{background:var(--pink-dark);border-color:var(--pink-dark)}
+.btn.ghost{background:#fff;color:var(--navy);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--navy);background:#fff}
+.btn.sm{padding:7px 16px;font-size:.85rem}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+@media (max-width:560px){.hero .btns .btn{padding:10px 16px;font-size:.88rem}}
+section{padding:72px 0}
+.hero{padding:56px 0 64px;background:linear-gradient(180deg,#fff 0,var(--soft) 100%)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+.hero p{font-size:1.15rem;color:var(--muted);max-width:520px;margin:0 0 28px}
+.hero img{border-radius:20px;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;box-shadow:0 18px 40px rgba(31,42,92,.15)}
+.tag{display:inline-block;font-family:var(--head);font-weight:600;font-size:.8rem;letter-spacing:.08em;
+text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+.phil{background:var(--navy);color:#fff}
+.phil .wrap{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:center}
+.phil img{border-radius:20px;width:100%;height:auto;max-width:340px;aspect-ratio:1/1;object-fit:cover;object-position:center 30%;margin:0 auto}
+.phil h2{color:#fff}
+.phil h3{color:var(--teal);margin-top:24px}
+.phil ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.phil li{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:12px 14px;font-weight:600;font-size:.95rem}
+.phil li::before{content:"\\2713";color:var(--pink);font-weight:800;margin-right:8px}
+.loved{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:24px 0 28px}
+.loved div{border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start;font-weight:600}
+.loved small{display:block;font-weight:400;color:var(--muted)}
+.dot{flex:none;width:14px;height:14px;border:1.5px solid var(--veg);border-radius:3px;position:relative;margin-top:5px}
+.dot::after{content:"";position:absolute;inset:2.5px;border-radius:50%;background:var(--veg)}
+.dot.nv{border-color:var(--nonveg)}.dot.nv::after{background:var(--nonveg)}
+.cities{background:var(--teal-tint);padding:40px 0;text-align:center}
+.cities p{margin:0;font-family:var(--head);font-weight:500;color:var(--navy)}
+.cities span{display:inline-block;margin:4px 10px}
+.faq details{border-bottom:1px solid var(--line);padding:16px 0}
+.faq summary{cursor:pointer;font-family:var(--head);font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--pink);font-size:1.3rem;line-height:1}
+.faq details[open] summary::after{content:"\\2212"}
+.faq p{margin:10px 0 0;color:var(--muted)}
+.menu-head{padding-top:48px;padding-bottom:8px}
+.menu-head p{color:var(--muted);max-width:620px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:14px 0;position:sticky;top:64px;background:#fff;z-index:5;
+border-bottom:1px solid var(--line);scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips a{flex:none;text-decoration:none;font-family:var(--head);font-size:.85rem;font-weight:500;padding:7px 14px;
+border:1px solid var(--line);border-radius:999px;white-space:nowrap}
+.chips a:hover{border-color:var(--pink);color:var(--pink)}
+.msec{padding:40px 0 8px;scroll-margin-top:130px}
+.msec>p{color:var(--muted);margin:-4px 0 18px}
+.items{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0 32px;list-style:none;padding:0;margin:0}
+.items li{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}
+.items .pop{margin-left:auto;flex:none;font-size:.72rem;font-weight:700;color:var(--pink);background:#FDE6F2;border-radius:999px;padding:2px 9px;margin-top:2px}
+.note{background:var(--soft);border-radius:14px;padding:20px 22px;margin:40px 0 0;color:var(--muted);font-size:.95rem}
+.cta{text-align:center;padding:64px 0}
+.cta .btns{justify-content:center}
+footer{background:var(--navy);color:#C9CDE0;padding:44px 0 28px;font-size:.92rem}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:28px}
+footer b{display:block;color:#fff;font-family:var(--head);font-weight:600;margin-bottom:8px}
+footer a{text-decoration:none;display:block;margin:2px 0}
+footer a:hover{color:#fff}
+footer img{height:36px;width:auto;filter:brightness(0) invert(1);margin-bottom:12px}
+footer .copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:.82rem}
+@media (max-width:820px){
+.hero .wrap,.phil .wrap{grid-template-columns:1fr;gap:32px}
+.hero{padding:36px 0 48px}.hero img{order:-1;aspect-ratio:16/10}
+.phil img{max-width:240px}
+footer .wrap{grid-template-columns:1fr 1fr}footer .about{grid-column:1/-1}}
+@media (max-width:560px){
+section{padding:52px 0}
+nav{gap:14px}nav .btn{display:none}header img{height:30px}
+
+.items{grid-template-columns:1fr}}
+"""
+
+
+def order_buttons(small=False):
+    cls = "btn sm" if small else "btn"
+    return "".join(
+        f'<a class="{cls}{"" if i == 0 else " ghost"}" href="{url}" target="_blank" rel="noopener">'
+        f'{"Order on " if not small else ""}{name}</a>'
+        for i, (name, url) in enumerate(ORDER.items())
+    )
+
+
+def page(filename, title, description, body, jsonld):
+    canonical = DOMAIN + "/" + ("" if filename == "index.html" else filename)
+    links = (("Home", "./", "index.html"), ("Menu", "menu.html", "menu.html"))
+    nav = "".join(
+        f'<a href="{href}"{CURRENT if key == filename else ""}>{label}</a>'
+        for label, href, key in links
+    )
+    ld = "".join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>'
+                 for j in jsonld)
+    return f"""<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{escape(title)}</title>
+<meta name="description" content="{escape(description)}">
+<link rel="canonical" href="{canonical}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Eatfit">
+<meta property="og:title" content="{escape(title)}">
+<meta property="og:description" content="{escape(description)}">
+<meta property="og:url" content="{canonical}">
+<meta property="og:image" content="{DOMAIN}/assets/img/bowls.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1F2A5C">
+<link rel="icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+{ld}
+</head>
+<body>
+<header><div class="wrap">
+<a href="./" aria-label="Eatfit home"><img src="assets/img/logo.png" alt="Eatfit" width="119" height="34"></a>
+<nav>{nav}<a class="btn sm" href="{ORDER["Swiggy"]}" target="_blank" rel="noopener">Order now</a></nav>
+</div></header>
+<main>
+{body}
+</main>
+<footer><div class="wrap">
+<div class="about"><img src="assets/img/logo.png" alt="Eatfit" width="126" height="36">
+<p style="margin:0;max-width:360px">{escape(TAGLINE)} #HealthyMadeHappier</p></div>
+<div><b>Explore</b><a href="./">Home</a><a href="menu.html">Menu</a><a href="{BLOG}" target="_blank" rel="noopener">Blog</a><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram</a></div>
+<div><b>Contact</b>{"<br>".join(escape(l) for l in ADDRESS)}</div>
+<div class="copy">&copy; {date.today().year} Eatfit, a Curefoods brand &middot; {" &middot; ".join(CITIES)}</div>
+</div></footer>
+</body>
+</html>
+"""
+
+
+CURRENT = ' aria-current="page"'
+
+
+def dot(name):
+    return f'<span class="dot{"" if is_veg(name) else " nv"}" aria-label="{"Veg" if is_veg(name) else "Non-veg"}"></span>'
+
+
+def org_ld():
+    return {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Eatfit",
+        "url": DOMAIN,
+        "logo": DOMAIN + "/assets/img/logo.png",
+        "image": DOMAIN + "/assets/img/bowls.jpg",
+        "description": TAGLINE,
+        "servesCuisine": ["Indian", "Healthy", "Bowls", "Khichdi", "South Indian"],
+        "hasMenu": DOMAIN + "/menu.html",
+        "areaServed": CITIES,
+        "parentOrganization": {"@type": "Organization", "name": "Curefoods", "url": "https://curefoods.in"},
+        "address": {"@type": "PostalAddress", "streetAddress": "No. 72/4, Roopena Agrahara, Hosur Road, Madiwala Post",
+                    "addressLocality": "Bengaluru", "addressRegion": "Karnataka", "postalCode": "560068",
+                    "addressCountry": "IN"},
+        "sameAs": [INSTAGRAM],
+    }
+
+
+def build_home(sections):
+    top = sorted(((i, n, t) for t, _, items in sections for i, n in items
+                  if t not in ("Drinks", "Sugar-free Ice Cream")), key=lambda x: -x[1])[:6]
+    loved = "".join(f"<div>{dot(i)}<span>{escape(tidy(i))}<small>{escape(t)}</small></span></div>"
+                    for i, _, t in top)
+    phil = "".join(f"<h3>{h}</h3><ul>{''.join(f'<li>{x}</li>' for x in pts)}</ul>" for h, pts in PHILOSOPHY)
+    faq = "".join(f"<details><summary>{escape(q)}</summary><p>{escape(a)}</p></details>" for q, a in FAQ)
+    body = f"""<section class="hero"><div class="wrap">
+<div>
+<span class="tag">#HealthyMadeHappier</span>
+<h1>Healthy food that <span class="accent">tastes like home.</span></h1>
+<p>Calorie-counted bowls, khichdi, curries and more. Made with real ingredients, zero trans fat and no deep frying.</p>
+<div class="btns">{order_buttons()}</div>
+</div>
+<img src="assets/img/bowls.jpg" alt="Eatfit healthy bowls" width="1200" height="600">
+</div></section>
+<section class="phil"><div class="wrap">
+<img src="assets/img/tiger.jpg" alt="The Eatfit tiger holding a bowl" width="664" height="900" loading="lazy">
+<div><span class="tag">Our food philosophy</span>
+<h2>Eating well shouldn't mean giving up food you love.</h2>
+{phil}</div>
+</div></section>
+<section><div class="wrap">
+<span class="tag">Most loved</span>
+<h2>What everyone's ordering</h2>
+<div class="loved">{loved}</div>
+<a class="btn" href="menu.html">See the full menu</a>
+</div></section>
+<div class="cities"><div class="wrap"><p>Now delivering in {"".join(f"<span>{c}</span>" for c in CITIES)}</p></div></div>
+<section class="faq"><div class="wrap" style="max-width:780px">
+<h2>Questions</h2>{faq}
+</div></section>"""
+    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
+              "mainEntity": [{"@type": "Question", "name": q,
+                              "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]}
+    return page("index.html", "Eatfit | Healthy, calorie-counted food delivered",
+                "Eatfit serves calorie-counted bowls, khichdi, curries and more with zero trans fat. "
+                "Order on Swiggy, Zomato or Ownly.", body, [org_ld(), faq_ld])
+
+
+def build_menu(sections):
+    chips = "".join(f'<a href="#{slug(t)}">{t}</a>' for t, _, _ in sections)
+    secs = []
+    for title, note, items in sections:
+        lis = "".join(
+            f"<li>{dot(i)}<span>{escape(tidy(i))}</span>{BEST if k < 2 and len(items) > 3 else ''}</li>"
+            for k, (i, _) in enumerate(items)
+        )
+        secs.append(f'<div class="msec" id="{slug(title)}"><h2>{title}</h2><p>{note}</p><ul class="items">{lis}</ul></div>')
+    body = f"""<div class="wrap menu-head">
+<span class="tag">Menu</span>
+<h1>Our menu</h1>
+<p>Every dish is calorie-counted and made with zero trans fat. Prices vary by city and app, so check them when you order.</p>
+<div class="btns">{order_buttons(small=True)}</div>
+</div>
+<div class="wrap"><div class="chips">{chips}</div>
+{"".join(secs)}
+<p class="note"><span class="dot" style="display:inline-block;vertical-align:-2px"></span> Veg &nbsp;&nbsp;
+<span class="dot nv" style="display:inline-block;vertical-align:-2px"></span> Non-veg &nbsp;&middot;&nbsp;
+Availability can vary by city and kitchen. Seasonal specials (like our Navratri menu) appear on the apps.</p>
+</div>
+<section class="cta"><div class="wrap">
+<h2>Hungry?</h2>
+<div class="btns">{order_buttons()}</div>
+</div></section>"""
+    menu_ld = {
+        "@context": "https://schema.org", "@type": "Menu", "name": "Eatfit Menu", "url": DOMAIN + "/menu.html",
+        "hasMenuSection": [{"@type": "MenuSection", "name": t,
+                            "hasMenuItem": [{"@type": "MenuItem", "name": tidy(i),
+                                             "suitableForDiet": "https://schema.org/VegetarianDiet" if is_veg(i) else None}
+                                            for i, _ in items]}
+                           for t, _, items in sections],
+    }
+    for s in menu_ld["hasMenuSection"]:
+        for it in s["hasMenuItem"]:
+            if it["suitableForDiet"] is None:
+                del it["suitableForDiet"]
+    return page("menu.html", "Menu | Eatfit",
+                "The full Eatfit menu: fusion bowls, homely bowls, khichdi, curries, curd rice, "
+                "breakfast, sugar-free ice cream and drinks.", body, [org_ld(), menu_ld])
+
+
+BEST = '<span class="pop">Bestseller</span>'
+
+
+def build_seo(sections):
+    robots = f"""User-agent: *
+Allow: /
+
+# AI / answer-engine crawlers welcome
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: {DOMAIN}/sitemap.xml
+"""
+    urls = "".join(f"<url><loc>{DOMAIN}/{p}</loc><lastmod>{TODAY}</lastmod></url>" for p in ("", "menu.html"))
+    sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+               f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
+    menu = "\n".join(f"- {t}: " + "; ".join(tidy(i) for i, _ in items) for t, _, items in sections)
+    phil = "; ".join(x for _, pts in PHILOSOPHY for x in pts)
+    faq = "\n".join(f"- {q} {a}" for q, a in FAQ)
+    llms = f"""# Eatfit
+
+> {TAGLINE} A Curefoods brand. #HealthyMadeHappier
+
+- Parent company: Curefoods India Ltd. (https://curefoods.in)
+- Address: {" ".join(ADDRESS)}
+- Cities: {", ".join(CITIES)}
+- Order: Swiggy ({ORDER["Swiggy"]}), Zomato ({ORDER["Zomato"]}), Ownly ({ORDER["Ownly"]})
+- Instagram: {INSTAGRAM} | Blog: {BLOG}
+- Food philosophy: {phil}
+- Prices vary by city and app; see the ordering apps for current prices.
+
+## Menu (as of {TODAY})
+{menu}
+
+## FAQ
+{faq}
+
+## Pages
+- [Home]({DOMAIN}/)
+- [Menu]({DOMAIN}/menu.html)
+"""
+    return robots, sitemap, llms
+
+
+NOT_FOUND = """<section><div class="wrap" style="text-align:center">
+<h1>Page not found</h1><p>That page has moved or doesn't exist.</p>
+<a class="btn" href="./">Back to home</a></div></section>"""
+
+
+def write(name, content):
+    with open(os.path.join(ROOT, name), "w", encoding="utf-8") as f:
+        f.write(content)
+
+
+if __name__ == "__main__":
+    sections = load_menu()
+    write("assets/style.css", CSS.strip() + "\n")
+    write("index.html", build_home(sections))
+    write("menu.html", build_menu(sections))
+    write("404.html", page("404.html", "Not found | Eatfit", TAGLINE, NOT_FOUND, []))
+    robots, sitemap, llms = build_seo(sections)
+    write("robots.txt", robots)
+    write("sitemap.xml", sitemap)
+    write("llms.txt", llms)
+    write(".nojekyll", "")
+    n = sum(len(items) for _, _, items in sections)
+    print(f"Built Home + Menu ({len(sections)} sections, {n} dishes) + SEO files")
