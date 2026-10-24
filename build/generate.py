@@ -167,7 +167,7 @@ font-weight:600;font-size:.95rem;padding:11px 22px;border-radius:999px;border:2p
 .btn.ghost:hover{border-color:var(--navy);background:#fff}
 .btn.sm{padding:7px 16px;font-size:.85rem}
 .btns{display:flex;flex-wrap:wrap;gap:10px}
-@media (max-width:560px){.hero .btns .btn{padding:10px 16px;font-size:.88rem}}
+@media (max-width:560px){.hero .btns{display:grid;grid-template-columns:1fr 1fr}.hero .btns .btn{padding:12px 10px;font-size:.88rem;justify-content:center;text-align:center}.hero .btns .btn:first-child{grid-column:1/-1}.hide-sm{display:none}}
 section{padding:72px 0}
 .hero{position:relative;padding:0;min-height:min(640px,78vh);display:flex;align-items:center;overflow:hidden;background:#fff}
 .hero>img{position:absolute;top:0;left:12%;width:100%;height:100%;object-fit:cover;object-position:center;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
@@ -254,7 +254,7 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
 .phil .wrap{grid-template-columns:1fr;gap:32px}
 .loved{grid-template-columns:repeat(2,1fr);gap:12px}.loved p{padding:10px 12px 8px;font-size:.9rem;gap:8px}.loved em{padding:0 12px 12px;font-size:.82rem}.loved .nudge{top:8px;left:8px;font-size:.7rem;padding:4px 9px}
 .hero{display:block;min-height:0;background:#fff}
-.hero>img{position:static;width:100%;height:auto;aspect-ratio:16/10;object-position:25% center;-webkit-mask-image:none;mask-image:none}
+.hero>img{position:static;width:100%;height:auto;aspect-ratio:4/3;object-position:60% center;-webkit-mask-image:none;mask-image:none}
 .hero::before{display:none}
 .hero .wrap{padding-top:28px;padding-bottom:44px}
 .phil img{max-width:240px}
@@ -262,7 +262,7 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
 footer .wrap{grid-template-columns:1fr 1fr}footer .about{grid-column:1/-1}}
 @media (max-width:560px){
 section{padding:52px 0}
-nav{gap:11px;overflow-x:auto;scrollbar-width:none}nav a{font-size:.8rem;white-space:nowrap}nav .btn{display:none}header img{height:26px}header .wrap{padding:0 14px}
+nav{gap:9px}nav a{font-size:.76rem;white-space:nowrap}nav .btn{display:none}header img{height:22px}header .wrap{padding:0 12px;gap:8px}
 
 .items{grid-template-columns:1fr}
 .logos{grid-template-columns:repeat(2,1fr)}.logos img{height:80px}}
@@ -313,7 +313,7 @@ def page(filename, title, description, body, jsonld):
 <body>
 <header><div class="wrap">
 <a href="./" aria-label="Eatfit home"><img src="assets/img/logo.png" alt="Eatfit" width="119" height="34"></a>
-<nav>{nav}<a href="{CUREFOODS_ABOUT}">About Curefoods</a><a class="btn sm" href="{ORDER["Swiggy"]}" target="_blank" rel="noopener">Order now</a></nav>
+<nav>{nav}<a href="{CUREFOODS_ABOUT}"><span class="hide-sm">About </span>Curefoods</a><a class="btn sm" href="{ORDER["Swiggy"]}" target="_blank" rel="noopener">Order now</a></nav>
 </div></header>
 <main>
 {body}
