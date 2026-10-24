@@ -5,7 +5,7 @@
 - Parent company: Curefoods India Ltd. (https://curefoods.in/)
 - Address: Curefoods India Ltd. No. 72/4, Roopena Agrahara, Hosur Road, Madiwala Post, Bengaluru, Karnataka 560068
 - Cities: Bengaluru, Delhi NCR, Hyderabad, Mumbai, Pune, Chandigarh, Chennai, Coimbatore
-- Order: https://abhilashbishtwork.github.io/eatfit/order.html (Swiggy, Zomato and the Ownly app, city by city)
+- Order: Swiggy (https://www.swiggy.com/direct/brand/76139?source=swiggy-direct&subSource=generic), Zomato (https://link.zomato.com/xqzv/rx68ggmv), Ownly app (https://ownly.food/app/brand/BR112474)
 - Instagram: https://www.instagram.com/the_eatfit
 - Kitchen brands: EatFit, Great Indian Khichdi, Rolls on Wheels, Madras Curd Rice Company, Millet Express
 - Food philosophy: ISO-certified kitchens; Farm-to-fork tracking; Calorie counted; Nutritionist approved; Zero trans fats; Zero chemicals; Whole grains; Zero deep frying
@@ -23,9 +23,9 @@
 - Drinks: Classic Masala Chaas; Protein Milkshake, Chocolate (25g protein); Tender Coconut Water; Protein Milkshake, Vanilla (25g protein); Pomegranate Juice (200ml); Mango Juice (200ml); Lemonade (200ml); LQD Salad, High-Fibre Drink
 
 ## Order links by city
-- Bengaluru: Swiggy (https://www.swiggy.com/city/bangalore/eatfit), Zomato (https://www.zomato.com/bangalore/restaurants/eatfit), Ownly app (https://ownly.food/app/brand/BR112474)
-- Delhi NCR: Swiggy (https://www.swiggy.com/city/delhi/eatfit), Zomato (https://www.zomato.com/ncr/restaurants/eatfit), Ownly app (https://ownly.food/app/brand/BR112474)
-- Hyderabad: Swiggy (https://www.swiggy.com/city/hyderabad/eatfit), Zomato (https://www.zomato.com/hyderabad/restaurants/eatfit), Ownly app (https://ownly.food/app/brand/BR112474)
+- Bengaluru: Swiggy (https://www.swiggy.com/city/bangalore/eatfit), Zomato (https://www.zomato.com/bangalore/restaurants/eatfit), Ownly (https://ownly.food/app/brand/BR112474)
+- Delhi NCR: Swiggy (https://www.swiggy.com/city/delhi/eatfit), Zomato (https://www.zomato.com/ncr/restaurants/eatfit), Ownly (https://ownly.food/app/brand/BR112474)
+- Hyderabad: Swiggy (https://www.swiggy.com/city/hyderabad/eatfit), Zomato (https://www.zomato.com/hyderabad/restaurants/eatfit), Ownly (https://ownly.food/app/brand/BR112474)
 - Mumbai: Swiggy (https://www.swiggy.com/city/mumbai/eatfit), Zomato (https://www.zomato.com/mumbai/restaurants/eatfit)
 - Pune: Swiggy (https://www.swiggy.com/city/pune/eatfit), Zomato (https://www.zomato.com/pune/restaurants/eatfit)
 - Chandigarh: Zomato (https://www.zomato.com/chandigarh/restaurants/eatfit)
@@ -36,7 +36,7 @@
 - What is EatFit? EatFit, by Curefoods, serves honest, clean and tasty Indian and global comfort meals made with healthy ingredients and no preservatives.
 - What are EatFit's most popular dishes? Classic Rajma Chawal, Homely Vegetable Khichdi, Creamy Pesto Paneer Bowl, Quinoa Khichdi and Classic Curd Rice. Khichdi is our most-ordered category.
 - Which cities is EatFit available in? Bengaluru, Delhi NCR, Hyderabad, Mumbai, Pune, Chandigarh, Chennai and Coimbatore.
-- Where can I order EatFit online? On Swiggy, Zomato and Ownly. Pick your city on our order page, or search for "EatFit" in the app.
+- Where can I order EatFit online? On Swiggy, Zomato and Ownly. Search for "EatFit" in the app.
 - What is the most popular EatFit dish in my city? Rajma Chawal in Delhi NCR, Chandigarh and Coimbatore; Vegetable Khichdi in Bengaluru and Pune; Quinoa Khichdi in Hyderabad; Curd Rice in Mumbai; Pesto Paneer Bowl in Chennai.
 - What should I order for a healthy lunch? Lunch is our busiest meal. Top picks: Rajma Chawal, Dal Tadka Chawal and the Creamy Pesto Paneer Bowl.
 - What is a good light dinner option? Khichdi is our top dinner pick. Try Homely Vegetable, Quinoa or Simple Dal Khichdi.
@@ -126,7 +126,6 @@ Our kitchens are ISO-certified, and we track our ingredients from farm to fork. 
 ## Pages
 - [Home](https://abhilashbishtwork.github.io/eatfit/)
 - [Menu](https://abhilashbishtwork.github.io/eatfit/menu.html)
-- [Order](https://abhilashbishtwork.github.io/eatfit/order.html)
 - [FAQs](https://abhilashbishtwork.github.io/eatfit/faq.html)
 - [Blog](https://abhilashbishtwork.github.io/eatfit/blog.html)
   - [What "calorie-counted" really means at EatFit](https://abhilashbishtwork.github.io/eatfit/blog-calorie-counted-food.html): Every EatFit dish is calorie-counted. Here's what that means and how to use it when you order.

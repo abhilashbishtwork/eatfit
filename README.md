@@ -15,7 +15,7 @@ This is a static site (plain HTML, one CSS file, a little vanilla JS) for EatFit
 - Confirms the robots meta matches the mode.
 - Parses all JSON-LD.
 - Scans for placeholder text.
-- Confirms every order button lands on order.html.
+- Confirms every order button goes to a configured platform link.
 - Builds a throwaway copy in the other mode and confirms the flip.
 
 ## Where things live

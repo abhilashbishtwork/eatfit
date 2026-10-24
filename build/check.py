@@ -115,12 +115,15 @@ def main():
         for ref in re.findall(r'(?:href|src|srcset)="([^"#?]+)', html):
             if not re.match(r"(https?:|mailto:|tel:)", ref):
                 internal.add(ref)
-        # Order buttons must land on the order page.
-        for a in re.findall(r'<a[^>]+class="[^"]*\b(?:hdr-order)\b[^"]*"[^>]*>', html) + \
-                re.findall(r'<div class="(?:order|obar)"[^>]*>.*?</div>(?:</div>)?', html, re.S):
-            for h in re.findall(r'href="([^"]+)"', a):
-                if not h.startswith("order.html"):
-                    fail(f"{p}: order button goes to {h}")
+        # Order buttons must go to a configured platform link, or to the #order boxes.
+        allowed = set(CONFIG["order_links"][k] for k in CONFIG["platforms"])
+        for block in re.findall(r'<div class="order" id="order">.*?</div></div>', html, re.S):
+            for h in re.findall(r'href="([^"]+)"', block):
+                if h.replace("&amp;", "&") not in allowed:
+                    fail(f"{p}: order box goes to {h}")
+        for h in re.findall(r'class="btn sm hdr-order" href="([^"]+)"', html):
+            if h not in ("#order", "./#order"):
+                fail(f"{p}: header order button goes to {h}")
     for ref in sorted(internal):
         status, _ = get(local, f"{BASE}/{ref.lstrip('./')}" if ref not in ("./",) else BASE + "/")
         if status != 200:

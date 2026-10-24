@@ -37,6 +37,7 @@ BRANDS = BRAND["sub_brands"]
 CITIES = [c for c in CONFIG["cities"] if c["listed_on_site"]]
 CITY_NAMES = [c["name"] for c in CITIES]
 PLATFORMS = CONFIG["platforms"]
+ORDER_LINKS = CONFIG["order_links"]
 CONTACT = CONFIG["contact"]
 TRUST = CONFIG["trust"]
 MENU_CFG = CONFIG["menu"]
@@ -91,7 +92,7 @@ FAQ = [
     (f"Which cities is {NAME} available in?",
      ", ".join(CITY_NAMES[:-1]) + " and " + CITY_NAMES[-1] + "."),
     (f"Where can I order {NAME} online?",
-     f"On Swiggy, Zomato and Ownly. Pick your city on our order page, or search for \"{NAME}\" in the app."),
+     f"On Swiggy, Zomato and Ownly. Search for \"{NAME}\" in the app."),
     (f"What is the most popular {NAME} dish in my city?",
      "Rajma Chawal in Delhi NCR, Chandigarh and Coimbatore; Vegetable Khichdi in Bengaluru and Pune; "
      "Quinoa Khichdi in Hyderabad; Curd Rice in Mumbai; Pesto Paneer Bowl in Chennai."),
@@ -186,6 +187,7 @@ html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hdr) + 12px)}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
 img{max-width:100%;display:block}
 picture{display:contents}
+picture>source{display:none}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
 footer :focus-visible,.cities :focus-visible{outline-color:#fff}
@@ -253,11 +255,9 @@ text-transform:uppercase;color:var(--teal-text);margin-bottom:12px}
 .phil li{background:#fff;border:1px solid #F6D3E3;box-shadow:0 1px 2px rgba(31,42,92,.05);border-radius:12px;padding:12px 14px;font-weight:600;font-size:.95rem}
 .phil li::before{content:"\\2713";color:var(--teal-text);font-weight:800;margin-right:8px}
 .loved{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:24px 0 32px}
-.loved a{position:relative;display:flex;flex-direction:column;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;transition:transform .15s,box-shadow .15s}
+.loved .card{position:relative;display:flex;flex-direction:column;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;transition:transform .15s,box-shadow .15s}
 .loved .nudge{position:absolute;top:12px;left:12px;z-index:1;background:#C9006D;color:#fff;font-family:var(--head);font-weight:600;font-size:.78rem;padding:5px 11px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.18)}
 .loved em{font-style:normal;font-family:var(--head);font-weight:600;font-size:.88rem;color:var(--pink-text);padding:0 16px 16px;margin-top:auto}
-.loved a:hover em{text-decoration:underline}
-.loved a:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(31,42,92,.10)}
 .loved img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
 .loved p{display:flex;gap:10px;align-items:flex-start;margin:0;padding:14px 16px 16px;font-weight:600;line-height:1.35}
 .loved small{display:block;font-weight:400;color:var(--muted)}
@@ -459,9 +459,9 @@ def pic(src, alt, w, h, extra=""):
 
 
 def order_boxes():
-    boxes = "".join(f'<a href="order.html?app={k}" style="color:{p["color"]}">{p["label"].replace(" app", "")}</a>'
+    boxes = "".join(f'<a href="{escape(ORDER_LINKS[k])}" target="_blank" rel="noopener" style="color:{p["color"]}">{p["label"]}</a>'
                     for k, p in PLATFORMS.items())
-    return f'<div class="order"><span>Order now</span><div>{boxes}</div></div>'
+    return f'<div class="order" id="order"><span>Order now</span><div>{boxes}</div></div>'
 
 
 def contact_block():
@@ -487,7 +487,6 @@ def page(filename, title, description, body, jsonld, noindex=False, extra_head="
                  for j in jsonld)
     robots = '<meta name="robots" content="noindex,nofollow">\n' if (MODE == "review" or noindex) else ""
     share = BASE + "/assets/img/share.jpg"
-    is_order = filename == "order.html"
     return f"""<!doctype html>
 <html lang="en-IN">
 <head>
@@ -517,7 +516,7 @@ def page(filename, title, description, body, jsonld, noindex=False, extra_head="
 <header><div class="wrap">
 <a class="logo" href="./" aria-label="{NAME} home"><img src="assets/img/logo.png" alt="{NAME}" width="119" height="34"></a>
 <nav class="desk" aria-label="Main">{nav}<a href="{CUREFOODS}">About Curefoods</a></nav>
-<a class="btn sm hdr-order" href="order.html">Order<span class="hide-xs"> now</span></a>
+<a class="btn sm hdr-order" href="{"#order" if filename in ("index.html", "menu.html") else "./#order"}">Order<span class="hide-xs"> now</span></a>
 <a class="burger" href="#footer-nav" aria-label="Open menu"><span></span></a>
 </div>
 <div id="mnav" class="mnav" hidden><nav aria-label="Mobile">{nav}<a href="{CUREFOODS}">About Curefoods</a></nav></div>
@@ -529,7 +528,7 @@ def page(filename, title, description, body, jsonld, noindex=False, extra_head="
 <div class="about"><img src="assets/img/logo.png" alt="{NAME}" width="126" height="36" loading="lazy">
 <p class="ftag">{escape(TAGLINE)} {escape(HASHTAG)}</p>
 <a class="ig" href="{INSTAGRAM}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>Follow @the_eatfit</a></div>
-<nav id="footer-nav" aria-label="Footer"><b>Explore</b><a href="./">Home</a><a href="menu.html">Menu</a><a href="order.html">Order</a><a href="blog.html">Blog</a><a href="faq.html">FAQs</a><a href="{CUREFOODS}">About Curefoods</a></nav>
+<nav id="footer-nav" aria-label="Footer"><b>Explore</b><a href="./">Home</a><a href="menu.html">Menu</a><a href="blog.html">Blog</a><a href="faq.html">FAQs</a><a href="{CUREFOODS}">About Curefoods</a></nav>
 <div class="fcontact"><b>Contact</b>{contact_block()}</div>
 <div class="copy">&copy; {date.today().year} {NAME}, a Curefoods brand. All rights reserved.</div>
 </div></footer>
@@ -608,11 +607,11 @@ def build_home(sections):
     for i, _, t in top:
         flag = (f"<!-- PHOTO-FLAG: {escape(PHOTO_FLAGS[tidy(i)])}; replace with real kitchen photography "
                 f"(NEEDS-INPUT P1) -->") if tidy(i) in PHOTO_FLAGS else ""
-        cards.append(f'{flag}<a href="order.html">'
+        cards.append(f'{flag}<div class="card">'
                      + (f'<b class="nudge">{escape(NUDGES[tidy(i)])}</b>' if tidy(i) in NUDGES else "")
                      + pic(dish_img(i), tidy(i), 640, 480, ' loading="lazy"')
                      + f'<p>{dot(i)}<span>{escape(tidy(i))}<small>{escape(t)}</small></span></p>'
-                     f'<em>Order now &rarr;</em></a>')
+                     '</div>')
     phil = "".join(f"<h3>{h}</h3><ul>{''.join(f'<li>{x}</li>' for x in pts)}</ul>" for h, pts in PHILOSOPHY)
     p_phil, p_loved = post_by_slug(HOME_POST_LINKS["phil"]), post_by_slug(HOME_POST_LINKS["loved"])
     cities = "".join(f'<span>{escape(c["name"])}</span>' for c in CITIES)
@@ -731,29 +730,6 @@ Availability can vary by city and kitchen. Seasonal specials (like our Navratri 
 BEST = '<span class="pop">Bestseller</span>'
 
 
-def build_order():
-    chips = "".join(f'<a href="#{c["slug"]}">{escape(c["name"])}</a>' for c in CITIES)
-    cards = []
-    for c in CITIES:
-        btns = "".join(f'<a class="obtn" data-app="{k}" href="{escape(c["order"][k])}" rel="noopener" '
-                       f'style="color:{p["color"]}">{p["label"]}</a>'
-                       for k, p in PLATFORMS.items() if c["order"].get(k))
-        cards.append(f'<div class="ocity" id="{c["slug"]}"><h2>{escape(c["name"])}</h2><div class="obtns">{btns}</div></div>')
-    body = f"""<div class="wrap menu-head">
-<span class="tag">Order</span>
-<h1>Order {NAME}</h1>
-<p>Pick your city, then your app. Each button opens {NAME}'s page for that city.</p>
-<nav class="chips ocity-chips" aria-label="Cities">{chips}</nav>
-</div>
-<section style="padding-top:28px"><div class="wrap">
-<div class="ocities">{"".join(cards)}</div>
-<p class="note">Ownly has no website ordering, so &ldquo;Ownly app&rdquo; opens the Ownly app on your phone.
-Which {NAME} kitchen delivers to you depends on your exact address, and the app shows that once you set your location.</p>
-</div></section>"""
-    return page("order.html", f"Order {NAME} online | Swiggy, Zomato, Ownly",
-                f"Order {NAME} in your city on Swiggy, Zomato or the Ownly app.", body, [org_ld()])
-
-
 def build_faq():
     faq = "".join(f"<details><summary>{escape(q)}</summary><p>{escape(a)}</p></details>" for q, a in FAQ)
     body = f"""<div class="wrap menu-head">
@@ -818,7 +794,7 @@ def build_post(x, sections):
 <h1>{escape(x["title"])}</h1>
 {pic(x["image"], x["title"], 640, 360, ' class="cover"')}
 {paras}
-<div class="note"><b>Hungry?</b> <a href="order.html">Order {NAME} in your city</a> on Swiggy, Zomato or Ownly, or <a href="menu.html">see the full menu</a>.</div>
+<div class="note"><b>Hungry?</b> order {NAME} on <a href="./#order">Swiggy, Zomato or Ownly</a>, or <a href="menu.html">see the full menu</a>.</div>
 <h3 style="margin-top:40px">More from the blog</h3><ul class="more">{others}</ul>
 </article>"""
     post_url = f"{BASE}/blog-{x['slug']}.html"
@@ -837,7 +813,7 @@ NOT_FOUND = """<section><div class="wrap" style="text-align:center">
 <h1>Page not found</h1><p>That page has moved or doesn't exist.</p>
 <a class="btn" href="./">Back to home</a></div></section>"""
 
-PAGES = ["index.html", "menu.html", "order.html", "faq.html", "blog.html"] + [f"blog-{x['slug']}.html" for x in POSTS]
+PAGES = ["index.html", "menu.html", "faq.html", "blog.html"] + [f"blog-{x['slug']}.html" for x in POSTS]
 
 AI_TRAINING = ["GPTBot", "ClaudeBot", "anthropic-ai", "Google-Extended", "Applebot-Extended", "CCBot",
                "Meta-ExternalAgent", "Amazonbot"]
@@ -889,7 +865,7 @@ def build_llms(sections):
 - Parent company: Curefoods India Ltd. ({CUREFOODS})
 - Address: {" ".join(ADDRESS)}
 - Cities: {", ".join(CITY_NAMES)}
-- Order: {BASE}/order.html (Swiggy, Zomato and the Ownly app, city by city)
+- Order: Swiggy ({ORDER_LINKS["swiggy"]}), Zomato ({ORDER_LINKS["zomato"]}), Ownly app ({ORDER_LINKS["ownly"]})
 - Instagram: {INSTAGRAM}
 - Kitchen brands: {", ".join(n for _, n in BRANDS)}
 - Food philosophy: {phil}
@@ -907,7 +883,6 @@ def build_llms(sections):
 ## Pages
 - [Home]({BASE}/)
 - [Menu]({BASE}/menu.html)
-- [Order]({BASE}/order.html)
 - [FAQs]({BASE}/faq.html)
 - [Blog]({BASE}/blog.html)
 {posts}
@@ -930,7 +905,6 @@ if __name__ == "__main__":
     write("assets/site.js", JS.strip() + "\n")
     write("index.html", build_home(sections))
     write("menu.html", build_menu(sections))
-    write("order.html", build_order())
     write("faq.html", build_faq())
     write("blog.html", build_blog())
     for x in POSTS:

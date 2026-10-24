@@ -13,6 +13,7 @@ html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hdr) + 12px)}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
 img{max-width:100%;display:block}
 picture{display:contents}
+picture>source{display:none}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
 footer :focus-visible,.cities :focus-visible{outline-color:#fff}
@@ -80,11 +81,9 @@ text-transform:uppercase;color:var(--teal-text);margin-bottom:12px}
 .phil li{background:#fff;border:1px solid #F6D3E3;box-shadow:0 1px 2px rgba(31,42,92,.05);border-radius:12px;padding:12px 14px;font-weight:600;font-size:.95rem}
 .phil li::before{content:"\2713";color:var(--teal-text);font-weight:800;margin-right:8px}
 .loved{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:24px 0 32px}
-.loved a{position:relative;display:flex;flex-direction:column;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;transition:transform .15s,box-shadow .15s}
+.loved .card{position:relative;display:flex;flex-direction:column;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;transition:transform .15s,box-shadow .15s}
 .loved .nudge{position:absolute;top:12px;left:12px;z-index:1;background:#C9006D;color:#fff;font-family:var(--head);font-weight:600;font-size:.78rem;padding:5px 11px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.18)}
 .loved em{font-style:normal;font-family:var(--head);font-weight:600;font-size:.88rem;color:var(--pink-text);padding:0 16px 16px;margin-top:auto}
-.loved a:hover em{text-decoration:underline}
-.loved a:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(31,42,92,.10)}
 .loved img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
 .loved p{display:flex;gap:10px;align-items:flex-start;margin:0;padding:14px 16px 16px;font-weight:600;line-height:1.35}
 .loved small{display:block;font-weight:400;color:var(--muted)}
