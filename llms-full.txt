@@ -1,17 +1,17 @@
-# Eatfit
+# EatFit
 
 > Healthy, yummy, honest and wholesome Indian food, made with real ingredients, zero trans fat and lots of love. A Curefoods brand. #HealthyMadeHappier
 
-- Parent company: Curefoods India Ltd. (https://curefoods.in)
+- Parent company: Curefoods India Ltd. (https://curefoods.in/)
 - Address: Curefoods India Ltd. No. 72/4, Roopena Agrahara, Hosur Road, Madiwala Post, Bengaluru, Karnataka 560068
 - Cities: Bengaluru, Delhi NCR, Hyderabad, Mumbai, Pune, Chandigarh, Chennai, Coimbatore
-- Order: Swiggy (https://www.swiggy.com/direct/brand/76139?source=swiggy-direct&subSource=generic), Zomato (https://link.zomato.com/xqzv/rx68ggmv), Ownly (https://ownly.food/app/brand/BR112474)
+- Order: https://abhilashbishtwork.github.io/eatfit/order.html (Swiggy, Zomato and the Ownly app, city by city)
 - Instagram: https://www.instagram.com/the_eatfit
-- Kitchen brands: Eatfit, Great Indian Khichdi, Rolls on Wheels, Madras Curd Rice Company, Millet Express
+- Kitchen brands: EatFit, Great Indian Khichdi, Rolls on Wheels, Madras Curd Rice Company, Millet Express
 - Food philosophy: ISO-certified kitchens; Farm-to-fork tracking; Calorie counted; Nutritionist approved; Zero trans fats; Zero chemicals; Whole grains; Zero deep frying
 - Prices vary by city and app; see the ordering apps for current prices.
 
-## Menu (as of 2026-10-24)
+## Menu (updated 2026-10-23)
 - Fusion Bowls: Creamy Pesto Paneer Bowl; Cheesy Peri Peri Paneer Bowl; Cheesy Peri Peri Chicken Bowl; Italian Chunky Paneer Steak Bowl; Butter Chicken Bowl; Cheesy Paneer Bowl; Creamy Pesto Chicken Patty Bowl; Cheesy Mushroom Risotto Bowl; Creamy Pesto Chicken Bowl; Creamy Pesto Paneer Steak Bowl; Chilli Garlic Chicken Bowl; Gochujang Korean Chilli Paneer Bowl; Italian Chunky Soya Bowl; Italian Chunky Chicken Patty Bowl; Cheesy Veggie Risotto Bowl; Italian Chunky Chicken Bowl; Mexican Chilli Rice Bowl; Peri Peri Corn Risotto Bowl; Gochujang Korean Chicken Rice Bowl; Creamy Spinach and Corn Risotto Bowl; Cheesy Chicken Meatball Bowl; Mexican Chilli Con Carne Rice Bowl; Cheesy Chicken Bowl; Italian Chunky Veggie Bowl; Hot Garlic Vegetable Bowl
 - Homely Bowls: Classic Rajma Chawal; Desi Dal Tadka Chawal; Dal Makhani Chawal; Black Chana with Steamed Rice; Amritsari Chole Chawal
 - Curry & Rice Bowls: Lasooni Methi Paneer with Steam Rice; Lasooni Methi Chicken with Steam Rice; Steam Rice with Kadhai Paneer; Steam Rice with Palak Paneer; Steam Rice with Matar Paneer; Steam Rice with Kadhai Chicken; Lasooni Methi Soya Chaap with Steam Rice; Steam Rice with Palak Chicken; Chicken Masala with Steam Rice; Steam Rice with Butter Chicken; Steam Rice with Kadhai Soya Chaap; Steam Rice with Butter Paneer; Steam Rice with Palak Soya Chaap; Steam Rice with Butter Soya Chaap
@@ -22,29 +22,39 @@
 - Sugar-free Ice Cream: Belgian Choco Chunk (100ml); Strawberry Crumble (100ml); Malai Kulfi; Vanilla Mudpie (100ml); Kesar Pista Kulfi; Espresso Cookie (100ml); Double Chocolate Crunch Bar; Mango Duet; Mango Passion Fruit Popsie
 - Drinks: Classic Masala Chaas; Protein Milkshake, Chocolate (25g protein); Tender Coconut Water; Protein Milkshake, Vanilla (25g protein); Pomegranate Juice (200ml); Mango Juice (200ml); Lemonade (200ml); LQD Salad, High-Fibre Drink
 
+## Order links by city
+- Bengaluru: Swiggy (https://www.swiggy.com/city/bangalore/eatfit), Zomato (https://www.zomato.com/bangalore/restaurants/eatfit), Ownly app (https://ownly.food/app/brand/BR112474)
+- Delhi NCR: Swiggy (https://www.swiggy.com/city/delhi/eatfit), Zomato (https://www.zomato.com/ncr/restaurants/eatfit), Ownly app (https://ownly.food/app/brand/BR112474)
+- Hyderabad: Swiggy (https://www.swiggy.com/city/hyderabad/eatfit), Zomato (https://www.zomato.com/hyderabad/restaurants/eatfit), Ownly app (https://ownly.food/app/brand/BR112474)
+- Mumbai: Swiggy (https://www.swiggy.com/city/mumbai/eatfit), Zomato (https://www.zomato.com/mumbai/restaurants/eatfit)
+- Pune: Swiggy (https://www.swiggy.com/city/pune/eatfit), Zomato (https://www.zomato.com/pune/restaurants/eatfit)
+- Chandigarh: Zomato (https://www.zomato.com/chandigarh/restaurants/eatfit)
+- Chennai: Swiggy (https://www.swiggy.com/city/chennai/eatfit), Zomato (https://www.zomato.com/chennai/restaurants/eatfit)
+- Coimbatore: Zomato (https://www.zomato.com/coimbatore/restaurants/eatfit)
+
 ## FAQ
-- What is Eatfit? Eatfit, by Curefoods, serves honest, clean and tasty Indian and global comfort meals made with healthy ingredients and no preservatives.
-- What are Eatfit's most popular dishes? Classic Rajma Chawal, Homely Vegetable Khichdi, Creamy Pesto Paneer Bowl, Quinoa Khichdi and Classic Curd Rice. Khichdi is our most-ordered category.
-- Which cities is Eatfit available in? Bengaluru, Delhi NCR, Hyderabad, Mumbai, Pune, Chandigarh, Chennai and Coimbatore.
-- Where can I order Eatfit online? On Swiggy, Zomato and Ownly. Search for "Eatfit" in the app.
-- What is the most popular Eatfit dish in my city? Rajma Chawal in Delhi NCR, Chandigarh and Coimbatore; Vegetable Khichdi in Bengaluru and Pune; Quinoa Khichdi in Hyderabad; Curd Rice in Mumbai; Pesto Paneer Bowl in Chennai.
+- What is EatFit? EatFit, by Curefoods, serves honest, clean and tasty Indian and global comfort meals made with healthy ingredients and no preservatives.
+- What are EatFit's most popular dishes? Classic Rajma Chawal, Homely Vegetable Khichdi, Creamy Pesto Paneer Bowl, Quinoa Khichdi and Classic Curd Rice. Khichdi is our most-ordered category.
+- Which cities is EatFit available in? Bengaluru, Delhi NCR, Hyderabad, Mumbai, Pune, Chandigarh, Chennai and Coimbatore.
+- Where can I order EatFit online? On Swiggy, Zomato and Ownly. Pick your city on our order page, or search for "EatFit" in the app.
+- What is the most popular EatFit dish in my city? Rajma Chawal in Delhi NCR, Chandigarh and Coimbatore; Vegetable Khichdi in Bengaluru and Pune; Quinoa Khichdi in Hyderabad; Curd Rice in Mumbai; Pesto Paneer Bowl in Chennai.
 - What should I order for a healthy lunch? Lunch is our busiest meal. Top picks: Rajma Chawal, Dal Tadka Chawal and the Creamy Pesto Paneer Bowl.
 - What is a good light dinner option? Khichdi is our top dinner pick. Try Homely Vegetable, Quinoa or Simple Dal Khichdi.
-- Is Eatfit food calorie-counted? Yes, and nutritionist-approved. Nutrition details are on each dish in the ordering app.
-- Is Eatfit good if I'm watching my weight? Our meals are portion-controlled and never deep fried, which makes them an easy everyday choice.
-- Does Eatfit have high-protein meals? Yes. Paneer, chicken and soya chaap bowls, rajma and chana meals, and Protein Milkshakes with 25g protein.
+- Is EatFit food calorie-counted? Yes, and nutritionist-approved. Nutrition details are on each dish in the ordering app.
+- Is EatFit good if I'm watching my weight? Our meals are portion-controlled and never deep fried, which makes them an easy everyday choice.
+- Does EatFit have high-protein meals? Yes. Paneer, chicken and soya chaap bowls, rajma and chana meals, and Protein Milkshakes with 25g protein.
 - Are there vegetarian and Jain options? Most of the menu is vegetarian. Our Jain khichdis are made without onion or garlic.
-- Does Eatfit serve South Indian food? Yes. A full curd rice range, plus all-day Masala Dosa, Idli and Vada.
-- Does Eatfit have healthy desserts? Yes. Sugar-free ice creams and kulfis.
-- Does Eatfit use preservatives or deep frying? No. Zero deep frying, zero trans fats and zero chemicals.
-- Is Eatfit part of Curefoods? Yes. Eatfit is a Curefoods brand.
+- Does EatFit serve South Indian food? Yes. A full curd rice range, plus all-day Masala Dosa, Idli and Vada.
+- Does EatFit have healthy desserts? Yes. Sugar-free ice creams and kulfis.
+- Does EatFit use preservatives or deep frying? No. Zero deep frying, zero trans fats and zero chemicals.
+- Is EatFit part of Curefoods? Yes. EatFit is a Curefoods brand.
 
 ## Blog posts
 
-### What "calorie-counted" really means at Eatfit
-https://www.eatfit.in/blog-calorie-counted-food.html
+### What "calorie-counted" really means at EatFit
+https://abhilashbishtwork.github.io/eatfit/blog-calorie-counted-food.html
 
-Most of us don't want to weigh our food or log every bite. We just want to know that a meal is doing right by us. That's the idea behind calorie-counted food at Eatfit.
+Most of us don't want to weigh our food or log every bite. We just want to know that a meal is doing right by us. That's the idea behind calorie-counted food at EatFit.
 
 #### Portions you can trust
 
@@ -59,7 +69,7 @@ When you order on Swiggy, Zomato or Ownly, look for the nutrition details on the
 A calorie-counted meal should still be one you look forward to. That's why our menu runs from Creamy Pesto Paneer Bowls to Classic Rajma Chawal. Healthy made happier is the whole point.
 
 ### Khichdi, but never boring
-https://www.eatfit.in/blog-khichdi-never-boring.html
+https://abhilashbishtwork.github.io/eatfit/blog-khichdi-never-boring.html
 
 Khichdi has a reputation as the food you eat when you're unwell. We think it deserves better. Rice and dal cooked together are filling, easy to digest and a good source of plant protein, which makes khichdi one of the best everyday meals there is.
 
@@ -76,9 +86,9 @@ If you want to switch things up, try our Quinoa Khichdi, Millet Khichdi or Multi
 Our Jain Dal Khichdi and Jain Vegetable Khichdi are made without onion or garlic, so more of the family can share the same meal.
 
 ### Easy ways to add protein to your day
-https://www.eatfit.in/blog-easy-protein.html
+https://abhilashbishtwork.github.io/eatfit/blog-easy-protein.html
 
-Protein keeps you full for longer and helps your body recover, whether you work out or not. Most Indian diets can use a little more of it. Here are simple ways to get there with Eatfit.
+Protein keeps you full for longer and helps your body recover, whether you work out or not. Most Indian diets can use a little more of it. Here are simple ways to get there with EatFit.
 
 #### Start with dal, rajma and chana
 
@@ -93,9 +103,9 @@ Our Fusion Bowls and Curry & Rice Bowls come with paneer, soya chaap or chicken.
 Our Protein Milkshakes, in chocolate and vanilla, carry 25g of protein each. Add one to your lunch order, or keep it as a snack in the afternoon.
 
 ### Why we don't deep fry, and what we do instead
-https://www.eatfit.in/blog-why-we-dont-deep-fry.html
+https://abhilashbishtwork.github.io/eatfit/blog-why-we-dont-deep-fry.html
 
-Good food starts with what you leave out. At Eatfit, a few rules apply to every dish, in every city.
+Good food starts with what you leave out. At EatFit, a few rules apply to every dish, in every city.
 
 #### Zero deep frying
 
@@ -114,11 +124,12 @@ Quinoa, millets and multigrain blends show up across our menu, from khichdi to b
 Our kitchens are ISO-certified, and we track our ingredients from farm to fork. That's how we keep every meal consistent, safe and honest.
 
 ## Pages
-- [Home](https://www.eatfit.in/)
-- [Menu](https://www.eatfit.in/menu.html)
-- [FAQs](https://www.eatfit.in/faq.html)
-- [Blog](https://www.eatfit.in/blog.html)
-  - [What "calorie-counted" really means at Eatfit](https://www.eatfit.in/blog-calorie-counted-food.html): Every Eatfit dish is calorie-counted. Here's what that means and how to use it when you order.
-  - [Khichdi, but never boring](https://www.eatfit.in/blog-khichdi-never-boring.html): From Quinoa Khichdi to Kathiyawadi Masala, here's why khichdi is one of our most-loved meals.
-  - [Easy ways to add protein to your day](https://www.eatfit.in/blog-easy-protein.html): You don't need a meal plan to eat more protein. A few simple swaps from our menu go a long way.
-  - [Why we don't deep fry, and what we do instead](https://www.eatfit.in/blog-why-we-dont-deep-fry.html): Zero deep frying, zero trans fats, whole grains. The rules behind every Eatfit kitchen.
+- [Home](https://abhilashbishtwork.github.io/eatfit/)
+- [Menu](https://abhilashbishtwork.github.io/eatfit/menu.html)
+- [Order](https://abhilashbishtwork.github.io/eatfit/order.html)
+- [FAQs](https://abhilashbishtwork.github.io/eatfit/faq.html)
+- [Blog](https://abhilashbishtwork.github.io/eatfit/blog.html)
+  - [What "calorie-counted" really means at EatFit](https://abhilashbishtwork.github.io/eatfit/blog-calorie-counted-food.html): Every EatFit dish is calorie-counted. Here's what that means and how to use it when you order.
+  - [Khichdi, but never boring](https://abhilashbishtwork.github.io/eatfit/blog-khichdi-never-boring.html): From Quinoa Khichdi to Kathiyawadi Masala, here's why khichdi is one of our most-loved meals.
+  - [Easy ways to add protein to your day](https://abhilashbishtwork.github.io/eatfit/blog-easy-protein.html): You don't need a meal plan to eat more protein. A few simple swaps from our menu go a long way.
+  - [Why we don't deep fry, and what we do instead](https://abhilashbishtwork.github.io/eatfit/blog-why-we-dont-deep-fry.html): Zero deep frying, zero trans fats, whole grains. The rules behind every EatFit kitchen.

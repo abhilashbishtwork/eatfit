@@ -1,0 +1,82 @@
+{
+  "_readme": "Single source of truth for the EatFit site build. Run ./build.sh after any change. Keys starting with _ are notes, not used by the build. A null value means 'not supplied yet': the build leaves that field out of the page and out of structured data. See NEEDS-INPUT.md.",
+
+  "deployment_mode": "review",
+  "canonical_base": {
+    "production": "https://www.eatfit.in",
+    "review": "https://abhilashbishtwork.github.io/eatfit"
+  },
+  "robots_ai_policy": "allow-all",
+  "_robots_ai_policy_options": "allow-all | retrieval-only | block-training (see README)",
+
+  "brand": {
+    "name": "EatFit",
+    "parent": "Curefoods",
+    "parent_url": "https://curefoods.in/",
+    "_VERIFY_tagline": "Site line kept as-is. Official tagline candidate 'Not just a meal - It's a Bowl' not adopted until confirmed. NEEDS-INPUT #B3.",
+    "tagline": "Healthy, yummy, honest and wholesome Indian food, made with real ingredients, zero trans fat and lots of love.",
+    "_VERIFY_hashtag": "Site uses #HealthyMadeHappier; Instagram bio snapshot shows #BodySaysThanks. NEEDS-INPUT #B2.",
+    "hashtag": "#HealthyMadeHappier",
+    "instagram": "https://www.instagram.com/the_eatfit",
+    "_sameAs_note": "Only verified official profiles. Add others (Facebook, LinkedIn, X, YouTube) only after the owner confirms the URL.",
+    "same_as_verified": ["https://www.instagram.com/the_eatfit"],
+    "address_lines": ["Curefoods India Ltd.", "No. 72/4, Roopena Agrahara,", "Hosur Road, Madiwala Post,", "Bengaluru, Karnataka 560068"],
+    "_VERIFY_sub_brands": "Site shows 5; official announcement lists 8. Kept at 5 until the confirmed portfolio is supplied. NEEDS-INPUT #B4.",
+    "sub_brands": [
+      ["brand-eatfit.png", "EatFit"],
+      ["brand-gik.png", "Great Indian Khichdi"],
+      ["brand-rolls.png", "Rolls on Wheels"],
+      ["brand-mcrc.png", "Madras Curd Rice Company"],
+      ["brand-millet.png", "Millet Express"]
+    ]
+  },
+
+  "_cities_note": "listed_on_site = the brand-owned city list shown on the site (VERIFY: site says 8, curefoods.in lists 9; NEEDS-INPUT #B1). order = links verified to land on an EatFit page for that city; null = no verified link, so no button is shown. Verified 2026-10-25 on desktop web and mobile web (iPhone 13 emulation).",
+  "cities": [
+    {"name": "Bengaluru", "slug": "bengaluru", "listed_on_site": true,
+     "order": {"swiggy": "https://www.swiggy.com/city/bangalore/eatfit", "zomato": "https://www.zomato.com/bangalore/restaurants/eatfit", "ownly": "https://ownly.food/app/brand/BR112474"}},
+    {"name": "Delhi NCR", "slug": "delhi-ncr", "listed_on_site": true,
+     "order": {"swiggy": "https://www.swiggy.com/city/delhi/eatfit", "zomato": "https://www.zomato.com/ncr/restaurants/eatfit", "ownly": "https://ownly.food/app/brand/BR112474"}},
+    {"name": "Hyderabad", "slug": "hyderabad", "listed_on_site": true,
+     "order": {"swiggy": "https://www.swiggy.com/city/hyderabad/eatfit", "zomato": "https://www.zomato.com/hyderabad/restaurants/eatfit", "ownly": "https://ownly.food/app/brand/BR112474"}},
+    {"name": "Mumbai", "slug": "mumbai", "listed_on_site": true,
+     "order": {"swiggy": "https://www.swiggy.com/city/mumbai/eatfit", "zomato": "https://www.zomato.com/mumbai/restaurants/eatfit", "ownly": null}},
+    {"name": "Pune", "slug": "pune", "listed_on_site": true,
+     "order": {"swiggy": "https://www.swiggy.com/city/pune/eatfit", "zomato": "https://www.zomato.com/pune/restaurants/eatfit", "ownly": null}},
+    {"name": "Chandigarh", "slug": "chandigarh", "listed_on_site": true,
+     "order": {"swiggy": null, "zomato": "https://www.zomato.com/chandigarh/restaurants/eatfit", "ownly": null}},
+    {"name": "Chennai", "slug": "chennai", "listed_on_site": true,
+     "order": {"swiggy": "https://www.swiggy.com/city/chennai/eatfit", "zomato": "https://www.zomato.com/chennai/restaurants/eatfit", "ownly": null}},
+    {"name": "Coimbatore", "slug": "coimbatore", "listed_on_site": true,
+     "order": {"swiggy": null, "zomato": "https://www.zomato.com/coimbatore/restaurants/eatfit", "ownly": null}}
+  ],
+  "_ownly_note": "Ownly has no web ordering. The Ownly link is the brand app link supplied by the owner: on a phone it opens an 'Open in Ownly' screen, on desktop it lands on Ownly's generic home page. It is labelled 'Ownly app' on the site. A per-city EatFit Ownly URL is needed (NEEDS-INPUT #O1).",
+  "platforms": {
+    "swiggy": {"label": "Swiggy", "color": "#C2410C"},
+    "zomato": {"label": "Zomato", "color": "#CB202D"},
+    "ownly": {"label": "Ownly app", "color": "#1F2A5C"}
+  },
+
+  "contact": {
+    "support_email": null,
+    "phone": null,
+    "fssai_license": null
+  },
+
+  "trust": {
+    "_note": "Rendered only when all of rating, rating_count, rating_source and rating_as_of are supplied. Press items need title, outlet, url, date.",
+    "rating": null,
+    "rating_count": null,
+    "rating_source": null,
+    "rating_as_of": null,
+    "press": []
+  },
+
+  "menu": {
+    "_note": "last_changed = date the menu data (build/menu_live.tsv) last changed, not the build date. Update it whenever you refresh that file.",
+    "last_changed": "2026-10-23",
+    "dish_details": {},
+    "_dish_details_format": "{\"Dish name as shown\": {\"description\": \"...\", \"kcal\": 0, \"protein_g\": 0, \"price_inr\": 0, \"source\": \"who supplied it, date\"}} - only verified values; missing keys stay hidden",
+    "papacream_facts": []
+  }
+}
