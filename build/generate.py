@@ -264,7 +264,7 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
 @media (max-width:820px){
 .phil .wrap{grid-template-columns:1fr;gap:32px}
 .loved{grid-template-columns:repeat(2,1fr);gap:12px}.loved p{padding:10px 12px 8px;font-size:.9rem;gap:8px}.loved em{padding:0 12px 12px;font-size:.82rem}.loved .nudge{top:8px;left:8px;font-size:.7rem;padding:4px 9px}
-.hero{min-height:calc(100svh - 64px);align-items:flex-end}
+.hero{min-height:calc(100svh - 96px);align-items:flex-end}
 .hero>img{left:0;height:68%;object-position:58% center;-webkit-mask-image:none;mask-image:none}
 .hero::before{background:linear-gradient(0deg,#fff 0,#fff 34%,rgba(255,255,255,.85) 46%,rgba(255,255,255,0) 64%)}
 .hero .wrap{padding-top:0;padding-bottom:28px}
@@ -273,7 +273,7 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
 footer .wrap{grid-template-columns:1fr 1fr}footer .about{grid-column:1/-1}}
 @media (max-width:560px){
 section{padding:52px 0}
-nav{gap:9px}nav a{font-size:.76rem;white-space:nowrap}nav .btn{display:none}header img{height:22px}header .wrap{padding:0 12px;gap:8px}
+header .wrap{flex-wrap:wrap;height:auto;padding:10px 12px 8px;gap:8px}header img{height:26px}nav{width:100%;display:flex;gap:5px}nav a{flex:1 1 auto;text-align:center;white-space:nowrap;font-size:clamp(.68rem,3.3vw,.8rem);padding:7px 4px;border-radius:999px;background:var(--soft,#F4F5FA);border:1px solid var(--line)}nav a[aria-current]{background:var(--pink);color:#fff;border-color:var(--pink)}nav .btn{display:none}
 
 .items{grid-template-columns:1fr}
 .logos{grid-template-columns:repeat(2,1fr)}.logos img{height:80px}}
@@ -324,7 +324,7 @@ def page(filename, title, description, body, jsonld):
 <body>
 <header><div class="wrap">
 <a href="./" aria-label="Eatfit home"><img src="assets/img/logo.png" alt="Eatfit" width="119" height="34"></a>
-<nav>{nav}<a href="{CUREFOODS_ABOUT}"><span class="hide-sm">About </span>Curefoods</a><a class="btn sm" href="{ORDER["Swiggy"]}" target="_blank" rel="noopener">Order now</a></nav>
+<nav>{nav}<a href="{CUREFOODS_ABOUT}">About Curefoods</a><a class="btn sm" href="{ORDER["Swiggy"]}" target="_blank" rel="noopener">Order now</a></nav>
 </div></header>
 <main>
 {body}
