@@ -5,7 +5,8 @@ POSTS = [
     {
         "slug": "calorie-counted-food",
         "title": "What \"calorie-counted\" really means at Eatfit",
-        "date": "2026-10-24",
+        "date": "2026-10-21",
+        "image": "assets/img/dish-creamy-pesto-paneer-bowl.jpg",
         "summary": "Every Eatfit dish is calorie-counted. Here's what that means and how to use it when you order.",
         "body": [
             "Most of us don't want to weigh our food or log every bite. We just want to know that a meal "
@@ -26,7 +27,8 @@ POSTS = [
     {
         "slug": "khichdi-never-boring",
         "title": "Khichdi, but never boring",
-        "date": "2026-10-24",
+        "date": "2026-10-07",
+        "image": "assets/img/dish-homely-vegetable-khichdi.jpg",
         "summary": "From Quinoa Khichdi to Kathiyawadi Masala, here's why khichdi is one of our most-loved meals.",
         "body": [
             "Khichdi has a reputation as the food you eat when you're unwell. We think it deserves better. "
@@ -47,7 +49,8 @@ POSTS = [
     {
         "slug": "easy-protein",
         "title": "Easy ways to add protein to your day",
-        "date": "2026-10-24",
+        "date": "2026-09-23",
+        "image": "assets/img/dish-lasooni-methi-paneer-with-steam-rice.jpg",
         "summary": "You don't need a meal plan to eat more protein. A few simple swaps from our menu go a long way.",
         "body": [
             "Protein keeps you full for longer and helps your body recover, whether you work out or not. "
@@ -67,7 +70,8 @@ POSTS = [
     {
         "slug": "why-we-dont-deep-fry",
         "title": "Why we don't deep fry, and what we do instead",
-        "date": "2026-10-24",
+        "date": "2026-09-09",
+        "image": "assets/img/bowls.jpg",
         "summary": "Zero deep frying, zero trans fats, whole grains. The rules behind every Eatfit kitchen.",
         "body": [
             "Good food starts with what you leave out. At Eatfit, a few rules apply to every dish, in "

@@ -76,52 +76,37 @@ PHILOSOPHY = [
 FAQ = [
     ("What is Eatfit?",
      "Eatfit, by Curefoods, serves honest, clean and tasty Indian and global comfort meals made "
-     "with healthy ingredients and no preservatives. Think calorie-counted khichdi, rice bowls, "
-     "curd rice and fusion bowls, delivered across India."),
+     "with healthy ingredients and no preservatives."),
     ("What are Eatfit's most popular dishes?",
-     "Our best-sellers are Classic Rajma Chawal, Homely Vegetable Khichdi, Creamy Pesto Paneer Bowl, "
-     "Quinoa Khichdi, Lasooni Methi Paneer with Steam Rice and Classic Curd Rice. Khichdi is our "
-     "single most-ordered category, followed by Fusion Bowls and Homely Bowls."),
+     "Classic Rajma Chawal, Homely Vegetable Khichdi, Creamy Pesto Paneer Bowl, Quinoa Khichdi and "
+     "Classic Curd Rice. Khichdi is our most-ordered category."),
     ("Which cities is Eatfit available in?",
-     "Eatfit delivers in " + ", ".join(CITIES[:-1]) + " and " + CITIES[-1] + ". Bengaluru, Delhi NCR "
-     "and Hyderabad are our biggest cities."),
+     ", ".join(CITIES[:-1]) + " and " + CITIES[-1] + "."),
     ("Where can I order Eatfit online?",
-     "Order Eatfit on Swiggy, Zomato and Ownly. Search for \"Eatfit\" in the app to find the "
-     "kitchen nearest to you."),
+     "On Swiggy, Zomato and Ownly. Search for \"Eatfit\" in the app."),
     ("What is the most popular Eatfit dish in my city?",
-     "Classic Rajma Chawal leads in Delhi NCR, Chandigarh and Coimbatore. Homely Vegetable Khichdi is "
-     "the favourite in Bengaluru and Pune, Quinoa Khichdi in Hyderabad, Classic Curd Rice in Mumbai and "
-     "the Creamy Pesto Paneer Bowl in Chennai."),
+     "Rajma Chawal in Delhi NCR, Chandigarh and Coimbatore; Vegetable Khichdi in Bengaluru and Pune; "
+     "Quinoa Khichdi in Hyderabad; Curd Rice in Mumbai; Pesto Paneer Bowl in Chennai."),
     ("What should I order for a healthy lunch?",
-     "Lunch is our busiest meal. Customers' top picks are Classic Rajma Chawal, Homely Vegetable "
-     "Khichdi and the Creamy Pesto Paneer Bowl, all balanced, filling and calorie-counted."),
+     "Lunch is our busiest meal. Top picks: Rajma Chawal, Dal Tadka Chawal and the Creamy Pesto Paneer Bowl."),
     ("What is a good light dinner option?",
-     "Khichdi is the most-ordered Eatfit dinner. Try Homely Vegetable Khichdi, Quinoa Khichdi or "
-     "Simple Dal Khichdi, which are easy to digest and won't weigh you down at night."),
+     "Khichdi is our top dinner pick. Try Homely Vegetable, Quinoa or Simple Dal Khichdi."),
     ("Is Eatfit food calorie-counted?",
-     "Yes. Our dishes are calorie-counted and nutritionist-approved, so you can make better food "
-     "choices. Nutrition details are shown on each dish in the ordering app."),
+     "Yes, and nutritionist-approved. Nutrition details are on each dish in the ordering app."),
     ("Is Eatfit good if I'm watching my weight?",
-     "Eatfit meals are portion-controlled, calorie-counted and never deep fried, with zero trans fats. "
-     "That makes them an easy everyday choice when you're keeping an eye on what you eat."),
+     "Our meals are portion-controlled and never deep fried, which makes them an easy everyday choice."),
     ("Does Eatfit have high-protein meals?",
-     "Yes. Pick paneer, chicken or soya chaap bowls, legume-based meals like Rajma Chawal and Black "
-     "Chana with Steamed Rice, or add a Protein Milkshake with 25g of protein."),
+     "Yes. Paneer, chicken and soya chaap bowls, rajma and chana meals, and Protein Milkshakes with 25g protein."),
     ("Are there vegetarian and Jain options?",
-     "Most of the menu is vegetarian, and our best-sellers are all veg. We also have Jain Dal Khichdi "
-     "and Jain Vegetable Khichdi, made without onion or garlic."),
+     "Most of the menu is vegetarian. Our Jain khichdis are made without onion or garlic."),
     ("Does Eatfit serve South Indian food?",
-     "Yes. Classic Curd Rice is one of our top dishes, alongside Curd Rice with Pomegranate, Gongura "
-     "and Podi curd rice, plus all-day Masala Dosa, Idli and Vada."),
+     "Yes. A full curd rice range, plus all-day Masala Dosa, Idli and Vada."),
     ("Does Eatfit have healthy desserts?",
-     "Yes. We serve sugar-free ice creams and kulfis, including Belgian Choco Chunk, Strawberry "
-     "Crumble and Malai Kulfi."),
+     "Yes. Sugar-free ice creams and kulfis."),
     ("Does Eatfit use preservatives or deep frying?",
-     "No. Our kitchens follow zero deep frying, zero trans fats and zero chemicals. We use whole grains "
-     "like quinoa and millets wherever they fit."),
+     "No. Zero deep frying, zero trans fats and zero chemicals."),
     ("Is Eatfit part of Curefoods?",
-     "Yes. Eatfit is a Curefoods brand. Curefoods also runs Great Indian Khichdi, Rolls on Wheels, "
-     "Madras Curd Rice Company and Millet Express from Eatfit kitchens."),
+     "Yes. Eatfit is a Curefoods brand."),
 ]
 
 
@@ -202,8 +187,11 @@ text-transform:uppercase;color:var(--teal);margin-bottom:12px}
 .phil li{background:#fff;border:1px solid #F6D3E3;box-shadow:0 1px 2px rgba(31,42,92,.05);border-radius:12px;padding:12px 14px;font-weight:600;font-size:.95rem}
 .phil li::before{content:"\\2713";color:var(--teal);font-weight:800;margin-right:8px}
 .loved{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:24px 0 32px}
-.loved div{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;transition:transform .15s,box-shadow .15s}
-.loved div:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(31,42,92,.10)}
+.loved a{position:relative;display:flex;flex-direction:column;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;transition:transform .15s,box-shadow .15s}
+.loved .nudge{position:absolute;top:12px;left:12px;background:var(--pink);color:#fff;font-family:var(--head);font-weight:600;font-size:.78rem;padding:5px 11px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.loved em{font-style:normal;font-family:var(--head);font-weight:600;font-size:.88rem;color:var(--pink);padding:0 16px 16px;margin-top:auto}
+.loved a:hover em{text-decoration:underline}
+.loved a:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(31,42,92,.10)}
 .loved img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
 .loved p{display:flex;gap:10px;align-items:flex-start;margin:0;padding:14px 16px 16px;font-weight:600;line-height:1.35}
 .loved small{display:block;font-weight:400;color:var(--muted)}
@@ -214,7 +202,10 @@ text-transform:uppercase;color:var(--teal);margin-bottom:12px}
 .logos{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:20px;align-items:center}
 .logos img{width:100%;height:116px;object-fit:contain;padding:10px 14px;border:1px solid var(--line);border-radius:14px;background:#fff}
 .posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
-.post{display:flex;flex-direction:column;text-decoration:none;border:1px solid var(--line);border-radius:16px;padding:22px;transition:border-color .15s,transform .15s}
+.post{display:flex;flex-direction:column;text-decoration:none;border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:border-color .15s,transform .15s}
+.post img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.post div{display:flex;flex-direction:column;flex:1;padding:20px 22px 22px}
+.article .cover{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:16px;margin:18px 0 8px}
 .post:hover{border-color:var(--pink);transform:translateY(-2px)}
 .post time,.article time{font-size:.82rem;color:var(--teal);font-weight:700}
 .post h3{margin:8px 0 6px;font-size:1.2rem}
@@ -261,7 +252,7 @@ footer img{height:36px;width:auto;filter:brightness(0) invert(1);margin-bottom:1
 footer .copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:.82rem}
 @media (max-width:820px){
 .phil .wrap{grid-template-columns:1fr;gap:32px}
-.loved{grid-template-columns:repeat(2,1fr);gap:12px}.loved p{padding:10px 12px 12px;font-size:.9rem;gap:8px}
+.loved{grid-template-columns:repeat(2,1fr);gap:12px}.loved p{padding:10px 12px 8px;font-size:.9rem;gap:8px}.loved em{padding:0 12px 12px;font-size:.82rem}.loved .nudge{top:8px;left:8px;font-size:.7rem;padding:4px 9px}
 .hero{display:block;min-height:0;background:#fff}
 .hero>img{position:static;width:100%;height:auto;aspect-ratio:16/10;object-position:25% center;-webkit-mask-image:none;mask-image:none}
 .hero::before{display:none}
@@ -371,12 +362,28 @@ def dish_img(item):
     return "assets/img/dish-" + re.sub(r"[^a-z0-9]+", "-", item.lower()).strip("-") + ".jpg"
 
 
+# Short nudges on the Most Loved cards (directional, from order data)
+NUDGES = {
+    "Creamy Pesto Paneer Bowl": "#1 Fusion Bowl",
+    "Desi Dal Tadka Chawal": "Comfort classic",
+    "Classic Curd Rice": "Mumbai's favourite",
+    "Lasooni Methi Paneer with Steam Rice": "Protein-packed",
+    "Dal Makhani Chawal": "Rich & creamy",
+    "Homely Vegetable Khichdi": "#1 in Bengaluru",
+    "Black Chana with Steamed Rice": "High fibre",
+    "Cheesy Peri Peri Paneer Bowl": "Spicy pick",
+}
+
+
 def build_home(sections):
     # Top sellers that have a dish photo (assets/img/dish-<slug>.jpg, from our Swiggy listing)
     top = sorted(((i, n, t) for t, _, items in sections for i, n in items
                   if os.path.exists(os.path.join(ROOT, dish_img(i)))), key=lambda x: -x[1])[:8]
-    loved = "".join(f'<div><img src="{dish_img(i)}" alt="{escape(tidy(i))}" width="640" height="480" loading="lazy">'
-                    f'<p>{dot(i)}<span>{escape(tidy(i))}<small>{escape(t)}</small></span></p></div>'
+    loved = "".join(f'<a href="{ORDER["Swiggy"]}" target="_blank" rel="noopener">'
+                    + (f'<b class="nudge">{escape(NUDGES[tidy(i)])}</b>' if tidy(i) in NUDGES else "")
+                    + f'<img src="{dish_img(i)}" alt="{escape(tidy(i))}" width="640" height="480" loading="lazy">'
+                    f'<p>{dot(i)}<span>{escape(tidy(i))}<small>{escape(t)}</small></span></p>'
+                    f'<em>Order now &rarr;</em></a>'
                     for i, _, t in top)
     phil = "".join(f"<h3>{h}</h3><ul>{''.join(f'<li>{x}</li>' for x in pts)}</ul>" for h, pts in PHILOSOPHY)
     body = f"""<section class="hero">
@@ -570,8 +577,9 @@ def build_faq():
 
 def build_blog():
     cards = "".join(
-        f'<a class="post" href="blog-{x["slug"]}.html"><time datetime="{x["date"]}">{nice_date(x["date"])}</time>'
-        f'<h3>{escape(x["title"])}</h3><p>{escape(x["summary"])}</p><span>Read more &rarr;</span></a>'
+        f'<a class="post" href="blog-{x["slug"]}.html"><img src="{x["image"]}" alt="{escape(x["title"])}" loading="lazy">'
+        f'<div><time datetime="{x["date"]}">{nice_date(x["date"])}</time>'
+        f'<h3>{escape(x["title"])}</h3><p>{escape(x["summary"])}</p><span>Read more &rarr;</span></div></a>'
         for x in POSTS)
     body = f"""<div class="wrap menu-head">
 <span class="tag">Blog</span>
@@ -592,12 +600,13 @@ def build_post(x):
 <a class="back" href="blog.html">&larr; All posts</a>
 <time datetime="{x["date"]}">{nice_date(x["date"])} &middot; Team Eatfit</time>
 <h1>{escape(x["title"])}</h1>
+<img class="cover" src="{x["image"]}" alt="{escape(x["title"])}" width="640" height="360">
 {paras}
 <div class="note"><b>Hungry?</b> Order Eatfit on <a href="{ORDER["Swiggy"]}" target="_blank" rel="noopener">Swiggy</a>, <a href="{ORDER["Zomato"]}" target="_blank" rel="noopener">Zomato</a> or <a href="{ORDER["Ownly"]}" target="_blank" rel="noopener">Ownly</a>, or <a href="menu.html">see the menu</a>.</div>
 <h3 style="margin-top:40px">More from the blog</h3><ul class="more">{others}</ul>
 </article>"""
     ld = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": x["title"], "description": x["summary"],
-          "datePublished": x["date"], "author": {"@type": "Organization", "name": "Eatfit"},
+          "datePublished": x["date"], "image": f"{DOMAIN}/{x['image']}", "author": {"@type": "Organization", "name": "Eatfit"},
           "publisher": {"@type": "Organization", "name": "Eatfit", "logo": {"@type": "ImageObject", "url": DOMAIN + "/assets/img/logo.png"}},
           "mainEntityOfPage": f"{DOMAIN}/blog-{x['slug']}.html"}
     return page(f"blog-{x['slug']}.html", f"{x['title']} | Eatfit blog", x["summary"], body, [ld])
