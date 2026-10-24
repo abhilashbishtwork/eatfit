@@ -5,7 +5,7 @@
 - Parent company: Curefoods India Ltd. (https://curefoods.in)
 - Address: Curefoods India Ltd. No. 72/4, Roopena Agrahara, Hosur Road, Madiwala Post, Bengaluru, Karnataka 560068
 - Cities: Bengaluru, Delhi NCR, Hyderabad, Mumbai, Pune, Chandigarh, Chennai, Coimbatore
-- Order: Swiggy (https://www.swiggy.com/direct/brand/76139?source=swiggy-direct&subSource=generic), Zomato (https://link.zomato.com/xqzv/rx68ggmv), Ownly (https://ownly.food/app/brand/BR112474)
+- Order: Swiggy (https://www.swiggy.com/direct/brand/76139?source=swiggy-direct&subSource=generic), Zomato (https://link.zomato.com/xqzv/rx68ggmv), Ownly (https://ownly.food/app/brand/BR112474), Toing
 - Instagram: https://www.instagram.com/the_eatfit
 - Kitchen brands: Eatfit, Great Indian Khichdi, Rolls on Wheels, Madras Curd Rice Company, Millet Express
 - Food philosophy: ISO-certified kitchens; Farm-to-fork tracking; Calorie counted; Nutritionist approved; Zero trans fats; Zero chemicals; Whole grains; Zero deep frying
@@ -23,10 +23,21 @@
 - Drinks: Classic Masala Chaas; Protein Milkshake, Chocolate (25g protein); Tender Coconut Water; Protein Milkshake, Vanilla (25g protein); Pomegranate Juice (200ml); Mango Juice (200ml); Lemonade (200ml); LQD Salad, High-Fibre Drink
 
 ## FAQ
-- What is Eatfit? Eatfit, by Curefoods, serves honest, clean and tasty Indian and global comfort meals made with healthy ingredients and no preservatives.
-- Is Eatfit food calorie-counted? Yes. Our dishes are calorie-counted and nutritionist-approved, so you can make better food choices.
-- Where can I order? On Swiggy, Zomato, Ownly and Toing, in Bengaluru, Delhi NCR, Hyderabad, Mumbai, Pune, Chandigarh, Chennai and Coimbatore.
-- Are there vegetarian options? Most of the menu is vegetarian, including Jain khichdi and sugar-free desserts.
+- What is Eatfit? Eatfit, by Curefoods, serves honest, clean and tasty Indian and global comfort meals made with healthy ingredients and no preservatives. Think calorie-counted khichdi, rice bowls, curd rice and fusion bowls, delivered across India.
+- What are Eatfit's most popular dishes? Our best-sellers are Classic Rajma Chawal, Homely Vegetable Khichdi, Creamy Pesto Paneer Bowl, Quinoa Khichdi, Lasooni Methi Paneer with Steam Rice and Classic Curd Rice. Khichdi is our single most-ordered category, followed by Fusion Bowls and Homely Bowls.
+- Which cities is Eatfit available in? Eatfit delivers in Bengaluru, Delhi NCR, Hyderabad, Mumbai, Pune, Chandigarh, Chennai and Coimbatore. Bengaluru, Delhi NCR and Hyderabad are our biggest cities.
+- Where can I order Eatfit online? Order Eatfit on Swiggy, Zomato, Ownly and Toing. Search for "Eatfit" in the app to find the kitchen nearest to you.
+- What is the most popular Eatfit dish in my city? Classic Rajma Chawal leads in Delhi NCR, Chandigarh and Coimbatore. Homely Vegetable Khichdi is the favourite in Bengaluru and Pune, Quinoa Khichdi in Hyderabad, Classic Curd Rice in Mumbai and the Creamy Pesto Paneer Bowl in Chennai.
+- What should I order for a healthy lunch? Lunch is our busiest meal. Customers' top picks are Classic Rajma Chawal, Homely Vegetable Khichdi and the Creamy Pesto Paneer Bowl, all balanced, filling and calorie-counted.
+- What is a good light dinner option? Khichdi is the most-ordered Eatfit dinner. Try Homely Vegetable Khichdi, Quinoa Khichdi or Simple Dal Khichdi, which are easy to digest and won't weigh you down at night.
+- Is Eatfit food calorie-counted? Yes. Our dishes are calorie-counted and nutritionist-approved, so you can make better food choices. Nutrition details are shown on each dish in the ordering app.
+- Is Eatfit good if I'm watching my weight? Eatfit meals are portion-controlled, calorie-counted and never deep fried, with zero trans fats. That makes them an easy everyday choice when you're keeping an eye on what you eat.
+- Does Eatfit have high-protein meals? Yes. Pick paneer, chicken or soya chaap bowls, legume-based meals like Rajma Chawal and Black Chana with Steamed Rice, or add a Protein Milkshake with 25g of protein.
+- Are there vegetarian and Jain options? Most of the menu is vegetarian, and our best-sellers are all veg. We also have Jain Dal Khichdi and Jain Vegetable Khichdi, made without onion or garlic.
+- Does Eatfit serve South Indian food? Yes. Classic Curd Rice is one of our top dishes, alongside Curd Rice with Pomegranate, Gongura and Podi curd rice, plus all-day Masala Dosa, Idli and Vada.
+- Does Eatfit have healthy desserts? Yes. We serve sugar-free ice creams and kulfis, including Belgian Choco Chunk, Strawberry Crumble and Malai Kulfi.
+- Does Eatfit use preservatives or deep frying? No. Our kitchens follow zero deep frying, zero trans fats and zero chemicals. We use whole grains like quinoa and millets wherever they fit.
+- Is Eatfit part of Curefoods? Yes. Eatfit is a Curefoods brand. Curefoods also runs Great Indian Khichdi, Rolls on Wheels, Madras Curd Rice Company and Millet Express from Eatfit kitchens.
 
 ## Pages
 - [Home](https://www.eatfit.in/)

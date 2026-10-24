@@ -12,7 +12,35 @@ User-agent: Google-Extended
 Allow: /
 User-agent: ClaudeBot
 Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: Applebot
+Allow: /
 User-agent: Applebot-Extended
 Allow: /
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: DuckAssistBot
+Allow: /
+User-agent: Meta-ExternalAgent
+Allow: /
+User-agent: Amazonbot
+Allow: /
+User-agent: MistralAI-User
+Allow: /
+User-agent: CCBot
+Allow: /
+
+# LLM-readable summaries: https://www.eatfit.in/llms.txt and https://www.eatfit.in/llms-full.txt
 
 Sitemap: https://www.eatfit.in/sitemap.xml

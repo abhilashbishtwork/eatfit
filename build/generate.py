@@ -76,13 +76,52 @@ PHILOSOPHY = [
 FAQ = [
     ("What is Eatfit?",
      "Eatfit, by Curefoods, serves honest, clean and tasty Indian and global comfort meals made "
-     "with healthy ingredients and no preservatives."),
+     "with healthy ingredients and no preservatives. Think calorie-counted khichdi, rice bowls, "
+     "curd rice and fusion bowls, delivered across India."),
+    ("What are Eatfit's most popular dishes?",
+     "Our best-sellers are Classic Rajma Chawal, Homely Vegetable Khichdi, Creamy Pesto Paneer Bowl, "
+     "Quinoa Khichdi, Lasooni Methi Paneer with Steam Rice and Classic Curd Rice. Khichdi is our "
+     "single most-ordered category, followed by Fusion Bowls and Homely Bowls."),
+    ("Which cities is Eatfit available in?",
+     "Eatfit delivers in " + ", ".join(CITIES[:-1]) + " and " + CITIES[-1] + ". Bengaluru, Delhi NCR "
+     "and Hyderabad are our biggest cities."),
+    ("Where can I order Eatfit online?",
+     "Order Eatfit on Swiggy, Zomato, Ownly and Toing. Search for \"Eatfit\" in the app to find the "
+     "kitchen nearest to you."),
+    ("What is the most popular Eatfit dish in my city?",
+     "Classic Rajma Chawal leads in Delhi NCR, Chandigarh and Coimbatore. Homely Vegetable Khichdi is "
+     "the favourite in Bengaluru and Pune, Quinoa Khichdi in Hyderabad, Classic Curd Rice in Mumbai and "
+     "the Creamy Pesto Paneer Bowl in Chennai."),
+    ("What should I order for a healthy lunch?",
+     "Lunch is our busiest meal. Customers' top picks are Classic Rajma Chawal, Homely Vegetable "
+     "Khichdi and the Creamy Pesto Paneer Bowl, all balanced, filling and calorie-counted."),
+    ("What is a good light dinner option?",
+     "Khichdi is the most-ordered Eatfit dinner. Try Homely Vegetable Khichdi, Quinoa Khichdi or "
+     "Simple Dal Khichdi, which are easy to digest and won't weigh you down at night."),
     ("Is Eatfit food calorie-counted?",
-     "Yes. Our dishes are calorie-counted and nutritionist-approved, so you can make better food choices."),
-    ("Where can I order?",
-     "On Swiggy, Zomato, Ownly and Toing, in " + ", ".join(CITIES[:-1]) + " and " + CITIES[-1] + "."),
-    ("Are there vegetarian options?",
-     "Most of the menu is vegetarian, including Jain khichdi and sugar-free desserts."),
+     "Yes. Our dishes are calorie-counted and nutritionist-approved, so you can make better food "
+     "choices. Nutrition details are shown on each dish in the ordering app."),
+    ("Is Eatfit good if I'm watching my weight?",
+     "Eatfit meals are portion-controlled, calorie-counted and never deep fried, with zero trans fats. "
+     "That makes them an easy everyday choice when you're keeping an eye on what you eat."),
+    ("Does Eatfit have high-protein meals?",
+     "Yes. Pick paneer, chicken or soya chaap bowls, legume-based meals like Rajma Chawal and Black "
+     "Chana with Steamed Rice, or add a Protein Milkshake with 25g of protein."),
+    ("Are there vegetarian and Jain options?",
+     "Most of the menu is vegetarian, and our best-sellers are all veg. We also have Jain Dal Khichdi "
+     "and Jain Vegetable Khichdi, made without onion or garlic."),
+    ("Does Eatfit serve South Indian food?",
+     "Yes. Classic Curd Rice is one of our top dishes, alongside Curd Rice with Pomegranate, Gongura "
+     "and Podi curd rice, plus all-day Masala Dosa, Idli and Vada."),
+    ("Does Eatfit have healthy desserts?",
+     "Yes. We serve sugar-free ice creams and kulfis, including Belgian Choco Chunk, Strawberry "
+     "Crumble and Malai Kulfi."),
+    ("Does Eatfit use preservatives or deep frying?",
+     "No. Our kitchens follow zero deep frying, zero trans fats and zero chemicals. We use whole grains "
+     "like quinoa and millets wherever they fit."),
+    ("Is Eatfit part of Curefoods?",
+     "Yes. Eatfit is a Curefoods brand. Curefoods also runs Great Indian Khichdi, Rolls on Wheels, "
+     "Madras Curd Rice Company and Millet Express from Eatfit kitchens."),
 ]
 
 
@@ -320,6 +359,7 @@ def org_ld():
         "hasMenu": DOMAIN + "/menu.html",
         "areaServed": CITIES,
         "parentOrganization": {"@type": "Organization", "name": "Curefoods", "url": "https://curefoods.in"},
+        "sameAs": [INSTAGRAM, ORDER["Swiggy"], ORDER["Zomato"], ORDER["Ownly"]],
         "address": {"@type": "PostalAddress", "streetAddress": "No. 72/4, Roopena Agrahara, Hosur Road, Madiwala Post",
                     "addressLocality": "Bengaluru", "addressRegion": "Karnataka", "postalCode": "560068",
                     "addressCountry": "IN"},
@@ -437,8 +477,36 @@ User-agent: Google-Extended
 Allow: /
 User-agent: ClaudeBot
 Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: Applebot
+Allow: /
 User-agent: Applebot-Extended
 Allow: /
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: DuckAssistBot
+Allow: /
+User-agent: Meta-ExternalAgent
+Allow: /
+User-agent: Amazonbot
+Allow: /
+User-agent: MistralAI-User
+Allow: /
+User-agent: CCBot
+Allow: /
+
+# LLM-readable summaries: {DOMAIN}/llms.txt and {DOMAIN}/llms-full.txt
 
 Sitemap: {DOMAIN}/sitemap.xml
 """
@@ -455,7 +523,7 @@ Sitemap: {DOMAIN}/sitemap.xml
 - Parent company: Curefoods India Ltd. (https://curefoods.in)
 - Address: {" ".join(ADDRESS)}
 - Cities: {", ".join(CITIES)}
-- Order: Swiggy ({ORDER["Swiggy"]}), Zomato ({ORDER["Zomato"]}), Ownly ({ORDER["Ownly"]})
+- Order: Swiggy ({ORDER["Swiggy"]}), Zomato ({ORDER["Zomato"]}), Ownly ({ORDER["Ownly"]}), Toing
 - Instagram: {INSTAGRAM}
 - Kitchen brands: {", ".join(n for _, n in BRANDS)}
 - Food philosophy: {phil}
@@ -475,7 +543,10 @@ Sitemap: {DOMAIN}/sitemap.xml
 """
     llms = llms.replace("{BLOG_LINKS}", "\n".join(
         f"  - [{x['title']}]({DOMAIN}/blog-{x['slug']}.html): {x['summary']}" for x in POSTS))
-    return robots, sitemap, llms
+    posts = "\n\n".join(f"### {x['title']}\n{DOMAIN}/blog-{x['slug']}.html\n\n" + "\n\n".join(
+        ("#### " + t[3:]) if t.startswith("## ") else t for t in x["body"]) for x in POSTS)
+    full = llms.replace("## Pages", f"## Blog posts\n\n{posts}\n\n## Pages")
+    return robots, sitemap, llms, full
 
 
 NOT_FOUND = """<section><div class="wrap" style="text-align:center">
@@ -536,10 +607,11 @@ if __name__ == "__main__":
     for x in POSTS:
         write(f"blog-{x['slug']}.html", build_post(x))
     write("404.html", page("404.html", "Not found | Eatfit", TAGLINE, NOT_FOUND, []))
-    robots, sitemap, llms = build_seo(sections)
+    robots, sitemap, llms, full = build_seo(sections)
     write("robots.txt", robots)
     write("sitemap.xml", sitemap)
     write("llms.txt", llms)
+    write("llms-full.txt", full)
     write(".nojekyll", "")
     n = sum(len(items) for _, _, items in sections)
     print(f"Built Home + Menu ({len(sections)} sections, {n} dishes) + SEO files")
