@@ -167,7 +167,13 @@ font-weight:600;font-size:.95rem;padding:11px 22px;border-radius:999px;border:2p
 .btn.ghost:hover{border-color:var(--navy);background:#fff}
 .btn.sm{padding:7px 16px;font-size:.85rem}
 .btns{display:flex;flex-wrap:wrap;gap:10px}
-@media (max-width:560px){.hero .btns{display:grid;grid-template-columns:1fr 1fr}.hero .btns .btn{padding:12px 10px;font-size:.88rem;justify-content:center;text-align:center}.hero .btns .btn:first-child{grid-column:1/-1}.hide-sm{display:none}}
+.order>span{display:block;font-family:var(--head);font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);margin-bottom:10px}
+.order>div{display:grid;grid-template-columns:repeat(3,minmax(0,150px));gap:12px}
+.order a{display:block;text-align:center;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 10px;
+font-family:var(--head);font-weight:700;font-size:1.05rem;box-shadow:0 5px 0 var(--navy),0 10px 18px rgba(31,42,92,.15);transition:transform .15s,box-shadow .15s}
+.order a:hover{transform:translateY(3px);box-shadow:0 2px 0 var(--navy),0 5px 10px rgba(31,42,92,.15)}
+.menu-head .order{margin-top:18px}
+@media (max-width:560px){.order>div{grid-template-columns:repeat(3,1fr);gap:10px}.order a{font-size:.95rem;padding:12px 6px}.hide-sm{display:none}}
 section{padding:72px 0}
 .hero{position:relative;padding:0;min-height:min(640px,78vh);display:flex;align-items:center;overflow:hidden;background:#fff}
 .hero>img{position:absolute;top:0;left:12%;width:100%;height:100%;object-fit:cover;object-position:center;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
@@ -274,13 +280,13 @@ nav{gap:9px}nav a{font-size:.76rem;white-space:nowrap}nav .btn{display:none}head
 """
 
 
-def order_buttons(small=False):
-    cls = "btn sm" if small else "btn"
-    return "".join(
-        f'<a class="{cls}{"" if i == 0 else " ghost"}" href="{url}" target="_blank" rel="noopener">'
-        f'{"Order on " if not small else ""}{name}</a>'
-        for i, (name, url) in enumerate(ORDER.items())
-    )
+APP_COLORS = {"Swiggy": "#FC8019", "Zomato": "#E23744", "Ownly": "#1F2A5C"}
+
+
+def order_boxes():
+    boxes = "".join(f'<a href="{url}" target="_blank" rel="noopener" style="color:{APP_COLORS[name]}">{name}</a>'
+                    for name, url in ORDER.items())
+    return f'<div class="order"><span>Order now</span><div>{boxes}</div></div>'
 
 
 def page(filename, title, description, body, jsonld):
@@ -397,7 +403,7 @@ def build_home(sections):
 <span class="tag">#HealthyMadeHappier</span>
 <h1>Healthy food that <span class="accent">tastes like home.</span></h1>
 <p>Calorie-counted bowls, khichdi, curries and more. Made with real ingredients, zero trans fat and no deep frying.</p>
-<div class="btns">{order_buttons()}</div>
+{order_boxes()}
 </div></div></section>
 <section class="phil"><div class="wrap">
 <img src="assets/img/tiger.jpg" alt="The Eatfit tiger holding a bowl" width="664" height="900" loading="lazy">
@@ -437,7 +443,7 @@ def build_menu(sections):
 <span class="tag">Menu</span>
 <h1>Our menu</h1>
 <p>Every dish is calorie-counted and made with zero trans fat. Prices vary by city and app, so check them when you order.</p>
-<div class="btns">{order_buttons(small=True)}</div>
+{order_boxes()}
 </div>
 <div class="wrap"><div class="chips">{chips}</div>
 {"".join(secs)}
@@ -447,7 +453,7 @@ Availability can vary by city and kitchen. Seasonal specials (like our Navratri 
 </div>
 <section class="cta"><div class="wrap">
 <h2>Hungry?</h2>
-<div class="btns">{order_buttons()}</div>
+{order_boxes()}
 </div></section>"""
     menu_ld = {
         "@context": "https://schema.org", "@type": "Menu", "name": "Eatfit Menu", "url": DOMAIN + "/menu.html",
