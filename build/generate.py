@@ -218,9 +218,14 @@ text-transform:uppercase;color:var(--teal);margin-bottom:12px}
 .article .note a{color:var(--pink);font-weight:700}
 .back{display:block;width:max-content;text-decoration:none;color:var(--muted);font-size:.9rem;margin-bottom:18px}
 .more{padding-left:18px}.more a{color:var(--pink)}
-.cities{background:var(--teal-tint);padding:40px 0;text-align:center}
-.cities p{margin:0;font-family:var(--head);font-weight:500;color:var(--navy)}
-.cities span{display:inline-block;margin:4px 10px}
+.cities{background:linear-gradient(135deg,var(--pink),#B80064);padding:56px 0 64px;text-align:center}
+.cities .tag{color:#FFD3E8}
+.cities h2{color:#fff;margin:6px 0 28px}
+.cities .grid{display:grid;grid-template-columns:repeat(4,minmax(0,190px));justify-content:center;gap:18px 16px}
+.cities .grid span{display:inline-block;background:#fff;color:var(--navy);font-family:var(--head);font-weight:700;font-size:1.02rem;padding:14px 22px;border-radius:14px;
+box-shadow:0 6px 0 var(--navy),0 14px 24px rgba(31,42,92,.35);transform:perspective(500px) rotateX(8deg);transition:transform .15s,box-shadow .15s}
+.cities .grid span:hover{transform:perspective(500px) rotateX(0) translateY(4px);box-shadow:0 2px 0 var(--navy),0 6px 12px rgba(31,42,92,.3)}
+@media (max-width:560px){.cities .grid{grid-template-columns:1fr 1fr;gap:14px 12px}.cities .grid span{font-size:.9rem;padding:11px 16px}}
 .faq details{border-bottom:1px solid var(--line);padding:16px 0}
 .faq summary{cursor:pointer;font-family:var(--head);font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
 .faq summary::-webkit-details-marker{display:none}
@@ -411,7 +416,9 @@ def build_home(sections):
 <h2>From the Eatfit kitchens</h2>
 <div class="logos">{"".join(f'<img src="assets/img/{f}" alt="{escape(n)}" loading="lazy">' for f, n in BRANDS)}</div>
 </div></section>
-<div class="cities"><div class="wrap"><p>Now delivering in {"".join(f"<span>{c}</span>" for c in CITIES)}</p></div></div>"""
+<div class="cities"><div class="wrap"><span class="tag">Now delivering in</span>
+<h2>{len(CITIES)} cities and growing</h2>
+<div class="grid">{"".join(f"<span>{c}</span>" for c in CITIES)}</div></div></div>"""
     return page("index.html", "Eatfit | Healthy, calorie-counted food delivered",
                 "Eatfit serves calorie-counted bowls, khichdi, curries and more with zero trans fat. "
                 "Order on Swiggy, Zomato or Ownly.", body, [org_ld()])
