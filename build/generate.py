@@ -293,7 +293,7 @@ def page(filename, title, description, body, jsonld):
 <p style="margin:0;max-width:360px">{escape(TAGLINE)} #HealthyMadeHappier</p></div>
 <div><b>Explore</b><a href="./">Home</a><a href="menu.html">Menu</a><a href="blog.html">Blog</a><a href="{CUREFOODS_ABOUT}">About Curefoods</a><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram</a></div>
 <div><b>Contact</b>{"<br>".join(escape(l) for l in ADDRESS)}</div>
-<div class="copy">&copy; {date.today().year} Eatfit, a Curefoods brand &middot; {" &middot; ".join(CITIES)}</div>
+<div class="copy">&copy; {date.today().year} Eatfit, a Curefoods brand. All rights reserved.</div>
 </div></footer>
 </body>
 </html>
