@@ -25,7 +25,7 @@
 ## FAQ
 - What is Eatfit? Eatfit, by Curefoods, serves honest, clean and tasty Indian and global comfort meals made with healthy ingredients and no preservatives.
 - Is Eatfit food calorie-counted? Yes. Our dishes are calorie-counted and nutritionist-approved, so you can make better food choices.
-- Where can I order? On Swiggy, Zomato and Ownly, in Bengaluru, Delhi NCR, Hyderabad, Mumbai, Pune, Chandigarh, Chennai and Coimbatore.
+- Where can I order? On Swiggy, Zomato, Ownly and Toing, in Bengaluru, Delhi NCR, Hyderabad, Mumbai, Pune, Chandigarh, Chennai and Coimbatore.
 - Are there vegetarian options? Most of the menu is vegetarian, including Jain khichdi and sugar-free desserts.
 
 ## Pages

@@ -22,7 +22,7 @@ ORDER = {
     "Zomato": "https://link.zomato.com/xqzv/rx68ggmv",
     "Ownly": "https://ownly.food/app/brand/BR112474",
 }
-CUREFOODS_ABOUT = "https://curefoods.in/about"
+CUREFOODS_ABOUT = "https://curefoods.in/"
 INSTAGRAM = "https://www.instagram.com/the_eatfit"
 BRANDS = [
     ("brand-eatfit.png", "Eatfit"),
@@ -80,7 +80,7 @@ FAQ = [
     ("Is Eatfit food calorie-counted?",
      "Yes. Our dishes are calorie-counted and nutritionist-approved, so you can make better food choices."),
     ("Where can I order?",
-     "On Swiggy, Zomato and Ownly, in " + ", ".join(CITIES[:-1]) + " and " + CITIES[-1] + "."),
+     "On Swiggy, Zomato, Ownly and Toing, in " + ", ".join(CITIES[:-1]) + " and " + CITIES[-1] + "."),
     ("Are there vegetarian options?",
      "Most of the menu is vegetarian, including Jain khichdi and sugar-free desserts."),
 ]
@@ -145,8 +145,8 @@ font-weight:600;font-size:.95rem;padding:11px 22px;border-radius:999px;border:2p
 .btns{display:flex;flex-wrap:wrap;gap:10px}
 @media (max-width:560px){.hero .btns .btn{padding:10px 16px;font-size:.88rem}}
 section{padding:72px 0}
-.hero{position:relative;padding:0;min-height:min(640px,78vh);display:flex;align-items:center;overflow:hidden;background:var(--soft)}
-.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:65% center}
+.hero{position:relative;padding:0;min-height:min(640px,78vh);display:flex;align-items:center;overflow:hidden;background:#fff}
+.hero>img{position:absolute;top:0;left:12%;width:100%;height:100%;object-fit:cover;object-position:center;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
 .hero::before{content:"";position:absolute;inset:0;z-index:1;
 background:linear-gradient(90deg,rgba(255,255,255,.97) 0,rgba(255,255,255,.9) 34%,rgba(255,255,255,0) 62%)}
 .hero .wrap{position:relative;z-index:2;width:100%;padding-top:64px;padding-bottom:64px}
@@ -224,7 +224,7 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
 .phil .wrap{grid-template-columns:1fr;gap:32px}
 .loved{grid-template-columns:repeat(2,1fr);gap:12px}.loved p{padding:10px 12px 12px;font-size:.9rem;gap:8px}
 .hero{display:block;min-height:0;background:#fff}
-.hero>img{position:static;height:auto;aspect-ratio:16/10;object-position:center}
+.hero>img{position:static;width:100%;height:auto;aspect-ratio:16/10;object-position:25% center;-webkit-mask-image:none;mask-image:none}
 .hero::before{display:none}
 .hero .wrap{padding-top:28px;padding-bottom:44px}
 .phil img{max-width:240px}
