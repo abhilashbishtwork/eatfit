@@ -49,6 +49,23 @@ text-transform:uppercase;color:var(--teal);margin-bottom:12px}
 .dot{flex:none;width:14px;height:14px;border:1.5px solid var(--veg);border-radius:3px;position:relative;margin-top:5px}
 .dot::after{content:"";position:absolute;inset:2.5px;border-radius:50%;background:var(--veg)}
 .dot.nv{border-color:var(--nonveg)}.dot.nv::after{background:var(--nonveg)}
+.brands{padding-top:0}
+.logos{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:20px;align-items:center}
+.logos img{width:100%;height:116px;object-fit:contain;padding:10px 14px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.post{display:flex;flex-direction:column;text-decoration:none;border:1px solid var(--line);border-radius:16px;padding:22px;transition:border-color .15s,transform .15s}
+.post:hover{border-color:var(--pink);transform:translateY(-2px)}
+.post time,.article time{font-size:.82rem;color:var(--teal);font-weight:700}
+.post h3{margin:8px 0 6px;font-size:1.2rem}
+.post p{color:var(--muted);flex:1;margin:0 0 14px}
+.post span{color:var(--pink);font-weight:700;font-size:.9rem}
+.article{max-width:740px;padding-top:40px;padding-bottom:64px}
+.article h1{font-size:clamp(1.8rem,4.5vw,2.6rem);margin-top:8px}
+.article h2{font-size:1.35rem;margin:30px 0 8px}
+.article p{font-size:1.06rem;color:#3A4160}
+.article .note a{color:var(--pink);font-weight:700}
+.back{display:block;width:max-content;text-decoration:none;color:var(--muted);font-size:.9rem;margin-bottom:18px}
+.more{padding-left:18px}.more a{color:var(--pink)}
 .cities{background:var(--teal-tint);padding:40px 0;text-align:center}
 .cities p{margin:0;font-family:var(--head);font-weight:500;color:var(--navy)}
 .cities span{display:inline-block;margin:4px 10px}
@@ -85,9 +102,11 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
 .hero .wrap,.phil .wrap{grid-template-columns:1fr;gap:32px}
 .hero{padding:36px 0 48px}.hero img{order:-1;aspect-ratio:16/10}
 .phil img{max-width:240px}
+.logos{grid-template-columns:repeat(3,1fr)}
 footer .wrap{grid-template-columns:1fr 1fr}footer .about{grid-column:1/-1}}
 @media (max-width:560px){
 section{padding:52px 0}
-nav{gap:14px}nav .btn{display:none}header img{height:30px}
+nav{gap:11px}nav a{font-size:.8rem;white-space:nowrap}nav .btn{display:none}header img{height:26px}header .wrap{padding:0 14px}
 
-.items{grid-template-columns:1fr}}
+.items{grid-template-columns:1fr}
+.logos{grid-template-columns:repeat(2,1fr)}.logos img{height:80px}}

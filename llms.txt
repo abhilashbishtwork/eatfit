@@ -6,11 +6,12 @@
 - Address: Curefoods India Ltd. No. 72/4, Roopena Agrahara, Hosur Road, Madiwala Post, Bengaluru, Karnataka 560068
 - Cities: Bengaluru, Delhi NCR, Hyderabad, Mumbai, Pune, Chandigarh, Chennai, Coimbatore
 - Order: Swiggy (https://www.swiggy.com/direct/brand/76139?source=swiggy-direct&subSource=generic), Zomato (https://link.zomato.com/xqzv/rx68ggmv), Ownly (https://ownly.food/app/brand/BR112474)
-- Instagram: https://www.instagram.com/the_eatfit | Blog: https://blog.eatfit.in/
+- Instagram: https://www.instagram.com/the_eatfit
+- Kitchen brands: Eatfit, Great Indian Khichdi, Rolls on Wheels, Madras Curd Rice Company, Millet Express
 - Food philosophy: ISO-certified kitchens; Farm-to-fork tracking; Calorie counted; Nutritionist approved; Zero trans fats; Zero chemicals; Whole grains; Zero deep frying
 - Prices vary by city and app; see the ordering apps for current prices.
 
-## Menu (as of 2026-10-23)
+## Menu (as of 2026-10-24)
 - Fusion Bowls: Creamy Pesto Paneer Bowl; Cheesy Peri Peri Paneer Bowl; Cheesy Peri Peri Chicken Bowl; Italian Chunky Paneer Steak Bowl; Butter Chicken Bowl; Cheesy Paneer Bowl; Creamy Pesto Chicken Patty Bowl; Cheesy Mushroom Risotto Bowl; Creamy Pesto Chicken Bowl; Creamy Pesto Paneer Steak Bowl; Chilli Garlic Chicken Bowl; Gochujang Korean Chilli Paneer Bowl; Italian Chunky Soya Bowl; Italian Chunky Chicken Patty Bowl; Cheesy Veggie Risotto Bowl; Italian Chunky Chicken Bowl; Mexican Chilli Rice Bowl; Peri Peri Corn Risotto Bowl; Gochujang Korean Chicken Rice Bowl; Creamy Spinach and Corn Risotto Bowl; Cheesy Chicken Meatball Bowl; Mexican Chilli Con Carne Rice Bowl; Cheesy Chicken Bowl; Italian Chunky Veggie Bowl; Hot Garlic Vegetable Bowl
 - Homely Bowls: Classic Rajma Chawal; Desi Dal Tadka Chawal; Dal Makhani Chawal; Black Chana with Steamed Rice; Amritsari Chole Chawal
 - Curry & Rice Bowls: Lasooni Methi Paneer with Steam Rice; Lasooni Methi Chicken with Steam Rice; Steam Rice with Kadhai Paneer; Steam Rice with Palak Paneer; Steam Rice with Matar Paneer; Steam Rice with Kadhai Chicken; Lasooni Methi Soya Chaap with Steam Rice; Steam Rice with Palak Chicken; Chicken Masala with Steam Rice; Steam Rice with Butter Chicken; Steam Rice with Kadhai Soya Chaap; Steam Rice with Butter Paneer; Steam Rice with Palak Soya Chaap; Steam Rice with Butter Soya Chaap
@@ -30,3 +31,8 @@
 ## Pages
 - [Home](https://www.eatfit.in/)
 - [Menu](https://www.eatfit.in/menu.html)
+- [Blog](https://www.eatfit.in/blog.html)
+  - [What "calorie-counted" really means at Eatfit](https://www.eatfit.in/blog-calorie-counted-food.html): Every Eatfit dish is calorie-counted. Here's what that means and how to use it when you order.
+  - [Khichdi, but never boring](https://www.eatfit.in/blog-khichdi-never-boring.html): From Quinoa Khichdi to Kathiyawadi Masala, here's why khichdi is one of our most-loved meals.
+  - [Easy ways to add protein to your day](https://www.eatfit.in/blog-easy-protein.html): You don't need a meal plan to eat more protein. A few simple swaps from our menu go a long way.
+  - [Why we don't deep fry, and what we do instead](https://www.eatfit.in/blog-why-we-dont-deep-fry.html): Zero deep frying, zero trans fats, whole grains. The rules behind every Eatfit kitchen.

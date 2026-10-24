@@ -11,6 +11,8 @@ import os
 from datetime import date
 from html import escape
 
+from posts import POSTS
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOMAIN = "https://www.eatfit.in"
 TODAY = date.today().isoformat()
@@ -20,8 +22,15 @@ ORDER = {
     "Zomato": "https://link.zomato.com/xqzv/rx68ggmv",
     "Ownly": "https://ownly.food/app/brand/BR112474",
 }
+CUREFOODS_ABOUT = "https://curefoods.in/about"
 INSTAGRAM = "https://www.instagram.com/the_eatfit"
-BLOG = "https://blog.eatfit.in/"
+BRANDS = [
+    ("brand-eatfit.png", "Eatfit"),
+    ("brand-gik.png", "Great Indian Khichdi"),
+    ("brand-rolls.png", "Rolls on Wheels"),
+    ("brand-mcrc.png", "Madras Curd Rice Company"),
+    ("brand-millet.png", "Millet Express"),
+]
 CITIES = ["Bengaluru", "Delhi NCR", "Hyderabad", "Mumbai", "Pune", "Chandigarh", "Chennai", "Coimbatore"]
 ADDRESS = ["Curefoods India Ltd.", "No. 72/4, Roopena Agrahara,", "Hosur Road, Madiwala Post,",
            "Bengaluru, Karnataka 560068"]
@@ -156,6 +165,23 @@ text-transform:uppercase;color:var(--teal);margin-bottom:12px}
 .dot{flex:none;width:14px;height:14px;border:1.5px solid var(--veg);border-radius:3px;position:relative;margin-top:5px}
 .dot::after{content:"";position:absolute;inset:2.5px;border-radius:50%;background:var(--veg)}
 .dot.nv{border-color:var(--nonveg)}.dot.nv::after{background:var(--nonveg)}
+.brands{padding-top:0}
+.logos{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:20px;align-items:center}
+.logos img{width:100%;height:116px;object-fit:contain;padding:10px 14px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.post{display:flex;flex-direction:column;text-decoration:none;border:1px solid var(--line);border-radius:16px;padding:22px;transition:border-color .15s,transform .15s}
+.post:hover{border-color:var(--pink);transform:translateY(-2px)}
+.post time,.article time{font-size:.82rem;color:var(--teal);font-weight:700}
+.post h3{margin:8px 0 6px;font-size:1.2rem}
+.post p{color:var(--muted);flex:1;margin:0 0 14px}
+.post span{color:var(--pink);font-weight:700;font-size:.9rem}
+.article{max-width:740px;padding-top:40px;padding-bottom:64px}
+.article h1{font-size:clamp(1.8rem,4.5vw,2.6rem);margin-top:8px}
+.article h2{font-size:1.35rem;margin:30px 0 8px}
+.article p{font-size:1.06rem;color:#3A4160}
+.article .note a{color:var(--pink);font-weight:700}
+.back{display:block;width:max-content;text-decoration:none;color:var(--muted);font-size:.9rem;margin-bottom:18px}
+.more{padding-left:18px}.more a{color:var(--pink)}
 .cities{background:var(--teal-tint);padding:40px 0;text-align:center}
 .cities p{margin:0;font-family:var(--head);font-weight:500;color:var(--navy)}
 .cities span{display:inline-block;margin:4px 10px}
@@ -192,12 +218,14 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
 .hero .wrap,.phil .wrap{grid-template-columns:1fr;gap:32px}
 .hero{padding:36px 0 48px}.hero img{order:-1;aspect-ratio:16/10}
 .phil img{max-width:240px}
+.logos{grid-template-columns:repeat(3,1fr)}
 footer .wrap{grid-template-columns:1fr 1fr}footer .about{grid-column:1/-1}}
 @media (max-width:560px){
 section{padding:52px 0}
-nav{gap:14px}nav .btn{display:none}header img{height:30px}
+nav{gap:11px}nav a{font-size:.8rem;white-space:nowrap}nav .btn{display:none}header img{height:26px}header .wrap{padding:0 14px}
 
-.items{grid-template-columns:1fr}}
+.items{grid-template-columns:1fr}
+.logos{grid-template-columns:repeat(2,1fr)}.logos img{height:80px}}
 """
 
 
@@ -212,9 +240,9 @@ def order_buttons(small=False):
 
 def page(filename, title, description, body, jsonld):
     canonical = DOMAIN + "/" + ("" if filename == "index.html" else filename)
-    links = (("Home", "./", "index.html"), ("Menu", "menu.html", "menu.html"))
+    links = (("Home", "./", "index.html"), ("Menu", "menu.html", "menu.html"), ("Blog", "blog.html", "blog.html"))
     nav = "".join(
-        f'<a href="{href}"{CURRENT if key == filename else ""}>{label}</a>'
+        f'<a href="{href}"{CURRENT if key == filename or (key == "blog.html" and filename.startswith("blog-")) else ""}>{label}</a>'
         for label, href, key in links
     )
     ld = "".join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>'
@@ -245,7 +273,7 @@ def page(filename, title, description, body, jsonld):
 <body>
 <header><div class="wrap">
 <a href="./" aria-label="Eatfit home"><img src="assets/img/logo.png" alt="Eatfit" width="119" height="34"></a>
-<nav>{nav}<a class="btn sm" href="{ORDER["Swiggy"]}" target="_blank" rel="noopener">Order now</a></nav>
+<nav>{nav}<a href="{CUREFOODS_ABOUT}">About Curefoods</a><a class="btn sm" href="{ORDER["Swiggy"]}" target="_blank" rel="noopener">Order now</a></nav>
 </div></header>
 <main>
 {body}
@@ -253,7 +281,7 @@ def page(filename, title, description, body, jsonld):
 <footer><div class="wrap">
 <div class="about"><img src="assets/img/logo.png" alt="Eatfit" width="126" height="36">
 <p style="margin:0;max-width:360px">{escape(TAGLINE)} #HealthyMadeHappier</p></div>
-<div><b>Explore</b><a href="./">Home</a><a href="menu.html">Menu</a><a href="{BLOG}" target="_blank" rel="noopener">Blog</a><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram</a></div>
+<div><b>Explore</b><a href="./">Home</a><a href="menu.html">Menu</a><a href="blog.html">Blog</a><a href="{CUREFOODS_ABOUT}">About Curefoods</a><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram</a></div>
 <div><b>Contact</b>{"<br>".join(escape(l) for l in ADDRESS)}</div>
 <div class="copy">&copy; {date.today().year} Eatfit, a Curefoods brand &middot; {" &middot; ".join(CITIES)}</div>
 </div></footer>
@@ -316,6 +344,11 @@ def build_home(sections):
 <h2>What everyone's ordering</h2>
 <div class="loved">{loved}</div>
 <a class="btn" href="menu.html">See the full menu</a>
+</div></section>
+<section class="brands"><div class="wrap">
+<span class="tag">Our brands</span>
+<h2>From the Eatfit kitchens</h2>
+<div class="logos">{"".join(f'<img src="assets/img/{f}" alt="{escape(n)}" loading="lazy">' for f, n in BRANDS)}</div>
 </div></section>
 <div class="cities"><div class="wrap"><p>Now delivering in {"".join(f"<span>{c}</span>" for c in CITIES)}</p></div></div>
 <section class="faq"><div class="wrap" style="max-width:780px">
@@ -394,7 +427,7 @@ Allow: /
 
 Sitemap: {DOMAIN}/sitemap.xml
 """
-    urls = "".join(f"<url><loc>{DOMAIN}/{p}</loc><lastmod>{TODAY}</lastmod></url>" for p in ("", "menu.html"))
+    urls = "".join(f"<url><loc>{DOMAIN}/{p}</loc><lastmod>{TODAY}</lastmod></url>" for p in ["", "menu.html", "blog.html"] + [f"blog-{x['slug']}.html" for x in POSTS])
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
     menu = "\n".join(f"- {t}: " + "; ".join(tidy(i) for i, _ in items) for t, _, items in sections)
@@ -408,7 +441,8 @@ Sitemap: {DOMAIN}/sitemap.xml
 - Address: {" ".join(ADDRESS)}
 - Cities: {", ".join(CITIES)}
 - Order: Swiggy ({ORDER["Swiggy"]}), Zomato ({ORDER["Zomato"]}), Ownly ({ORDER["Ownly"]})
-- Instagram: {INSTAGRAM} | Blog: {BLOG}
+- Instagram: {INSTAGRAM}
+- Kitchen brands: {", ".join(n for _, n in BRANDS)}
 - Food philosophy: {phil}
 - Prices vary by city and app; see the ordering apps for current prices.
 
@@ -421,13 +455,56 @@ Sitemap: {DOMAIN}/sitemap.xml
 ## Pages
 - [Home]({DOMAIN}/)
 - [Menu]({DOMAIN}/menu.html)
+- [Blog]({DOMAIN}/blog.html)
+{{BLOG_LINKS}}
 """
+    llms = llms.replace("{BLOG_LINKS}", "\n".join(
+        f"  - [{x['title']}]({DOMAIN}/blog-{x['slug']}.html): {x['summary']}" for x in POSTS))
     return robots, sitemap, llms
 
 
 NOT_FOUND = """<section><div class="wrap" style="text-align:center">
 <h1>Page not found</h1><p>That page has moved or doesn't exist.</p>
 <a class="btn" href="./">Back to home</a></div></section>"""
+
+
+def nice_date(d):
+    return date.fromisoformat(d).strftime("%-d %B %Y")
+
+
+def build_blog():
+    cards = "".join(
+        f'<a class="post" href="blog-{x["slug"]}.html"><time datetime="{x["date"]}">{nice_date(x["date"])}</time>'
+        f'<h3>{escape(x["title"])}</h3><p>{escape(x["summary"])}</p><span>Read more &rarr;</span></a>'
+        for x in POSTS)
+    body = f"""<div class="wrap menu-head">
+<span class="tag">Blog</span>
+<h1>The Eatfit blog</h1>
+<p>Simple ideas for eating well, from the Eatfit kitchen.</p>
+</div>
+<section style="padding-top:24px"><div class="wrap"><div class="posts">{cards}</div></div></section>"""
+    blog_ld = {"@context": "https://schema.org", "@type": "Blog", "name": "The Eatfit blog", "url": DOMAIN + "/blog.html",
+               "blogPost": [{"@type": "BlogPosting", "headline": x["title"], "datePublished": x["date"],
+                             "url": f"{DOMAIN}/blog-{x['slug']}.html"} for x in POSTS]}
+    return page("blog.html", "Blog | Eatfit", "Simple ideas for eating well, from the Eatfit kitchen.", body, [blog_ld])
+
+
+def build_post(x):
+    paras = "".join(f"<h2>{escape(t[3:])}</h2>" if t.startswith("## ") else f"<p>{escape(t)}</p>" for t in x["body"])
+    others = "".join(f'<li><a href="blog-{o["slug"]}.html">{escape(o["title"])}</a></li>' for o in POSTS if o is not x)
+    body = f"""<article class="wrap article">
+<a class="back" href="blog.html">&larr; All posts</a>
+<time datetime="{x["date"]}">{nice_date(x["date"])} &middot; Team Eatfit</time>
+<h1>{escape(x["title"])}</h1>
+{paras}
+<div class="note"><b>Hungry?</b> Order Eatfit on <a href="{ORDER["Swiggy"]}" target="_blank" rel="noopener">Swiggy</a>, <a href="{ORDER["Zomato"]}" target="_blank" rel="noopener">Zomato</a> or <a href="{ORDER["Ownly"]}" target="_blank" rel="noopener">Ownly</a>, or <a href="menu.html">see the menu</a>.</div>
+<h3 style="margin-top:40px">More from the blog</h3><ul class="more">{others}</ul>
+</article>"""
+    ld = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": x["title"], "description": x["summary"],
+          "datePublished": x["date"], "author": {"@type": "Organization", "name": "Eatfit"},
+          "publisher": {"@type": "Organization", "name": "Eatfit", "logo": {"@type": "ImageObject", "url": DOMAIN + "/assets/img/logo.png"}},
+          "mainEntityOfPage": f"{DOMAIN}/blog-{x['slug']}.html"}
+    return page(f"blog-{x['slug']}.html", f"{x['title']} | Eatfit blog", x["summary"], body, [ld])
 
 
 def write(name, content):
@@ -440,6 +517,9 @@ if __name__ == "__main__":
     write("assets/style.css", CSS.strip() + "\n")
     write("index.html", build_home(sections))
     write("menu.html", build_menu(sections))
+    write("blog.html", build_blog())
+    for x in POSTS:
+        write(f"blog-{x['slug']}.html", build_post(x))
     write("404.html", page("404.html", "Not found | Eatfit", TAGLINE, NOT_FOUND, []))
     robots, sitemap, llms = build_seo(sections)
     write("robots.txt", robots)
