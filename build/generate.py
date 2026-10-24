@@ -264,10 +264,10 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
 @media (max-width:820px){
 .phil .wrap{grid-template-columns:1fr;gap:32px}
 .loved{grid-template-columns:repeat(2,1fr);gap:12px}.loved p{padding:10px 12px 8px;font-size:.9rem;gap:8px}.loved em{padding:0 12px 12px;font-size:.82rem}.loved .nudge{top:8px;left:8px;font-size:.7rem;padding:4px 9px}
-.hero{display:block;min-height:0;background:#fff}
-.hero>img{position:static;width:100%;height:auto;aspect-ratio:4/3;object-position:60% center;-webkit-mask-image:none;mask-image:none}
-.hero::before{display:none}
-.hero .wrap{padding-top:28px;padding-bottom:44px}
+.hero{min-height:calc(100svh - 64px);align-items:flex-end}
+.hero>img{left:0;height:68%;object-position:58% center;-webkit-mask-image:none;mask-image:none}
+.hero::before{background:linear-gradient(0deg,#fff 0,#fff 34%,rgba(255,255,255,.85) 46%,rgba(255,255,255,0) 64%)}
+.hero .wrap{padding-top:0;padding-bottom:28px}
 .phil img{max-width:240px}
 .logos{grid-template-columns:repeat(3,1fr)}
 footer .wrap{grid-template-columns:1fr 1fr}footer .about{grid-column:1/-1}}
