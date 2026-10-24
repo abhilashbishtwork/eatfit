@@ -293,9 +293,8 @@ text-transform:uppercase;color:var(--teal-text);margin-bottom:12px}
 .cities .tag{color:#fff}
 .cities h2{color:#fff;margin:6px 0 28px}
 .cities .grid{display:grid;grid-template-columns:repeat(4,minmax(0,190px));justify-content:center;gap:18px 16px}
-.cities .grid a{display:block;text-decoration:none;background:#fff;color:var(--navy);font-family:var(--head);font-weight:700;font-size:1.02rem;padding:14px 22px;border-radius:14px;
+.cities .grid span{display:block;background:#fff;color:var(--navy);font-family:var(--head);font-weight:700;font-size:1.02rem;padding:14px 22px;border-radius:14px;
 box-shadow:0 6px 0 var(--navy),0 14px 24px rgba(31,42,92,.35);transform:perspective(500px) rotateX(8deg);transition:transform .15s,box-shadow .15s}
-.cities .grid a:hover{transform:perspective(500px) rotateX(0) translateY(4px);box-shadow:0 2px 0 var(--navy),0 6px 12px rgba(31,42,92,.3)}
 .faq details{border-bottom:1px solid var(--line);padding:16px 0}
 .faq summary{cursor:pointer;font-family:var(--head);font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
 .faq summary::-webkit-details-marker{display:none}
@@ -342,7 +341,6 @@ border:1px solid var(--line);border-radius:999px;white-space:nowrap}
 .obtn{white-space:nowrap;font-size:.92rem;text-align:center;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 10px;font-family:var(--head);font-weight:700;box-shadow:0 4px 0 var(--navy);transition:transform .15s,box-shadow .15s}
 .obtn:hover{transform:translateY(2px);box-shadow:0 2px 0 var(--navy)}
 .obtn.pick{border-color:var(--navy);box-shadow:0 4px 0 var(--navy),0 0 0 3px #D6DAEA}
-.obar{display:none}
 footer{background:var(--navy);color:#C9CDE0;padding:44px 0 28px;font-size:.92rem}
 footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:28px}
 footer .wrap>*{min-width:0}
@@ -351,6 +349,8 @@ footer a{text-decoration:none;display:block;margin:2px 0}
 footer a:hover{color:#fff}
 footer .ig{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:8px 14px;border:1px solid rgba(255,255,255,.25);border-radius:999px;color:#fff;font-family:var(--head);font-weight:600;font-size:.88rem}
 footer .ig:hover{background:rgba(255,255,255,.08)}
+footer .ftag{margin:0;max-width:360px}
+footer .al{display:block}
 footer .about img{height:36px;width:auto;filter:brightness(0) invert(1);margin-bottom:12px}
 footer .copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:.82rem}
 @media (max-width:900px){
@@ -377,25 +377,30 @@ footer .wrap{grid-template-columns:1fr 1fr}footer .about{grid-column:1/-1}
 .hero-copy>.order{order:5;margin:0 20px}
 }
 @media (max-width:820px) and (max-height:700px){.hero img{aspect-ratio:16/10}.hero{padding-top:16px}}
-@media (max-width:760px){
-.obar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:15;align-items:center;gap:8px;background:#fff;border-top:1px solid var(--line);
-box-shadow:0 -6px 18px rgba(31,42,92,.08);padding:10px 12px calc(10px + env(safe-area-inset-bottom))}
-.obar>span{flex:none;font-family:var(--head);font-weight:700;font-size:.8rem;color:var(--navy)}
-.obar a{flex:1 1 0;min-width:0;text-align:center;text-decoration:none;font-family:var(--head);font-weight:700;font-size:.9rem;padding:9px 4px;border:1px solid var(--line);border-radius:10px;background:#fff}
-body.has-obar{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
-body.has-obar .totop{bottom:calc(76px + env(safe-area-inset-bottom))}
-}
 @media (max-width:560px){
 section{padding:52px 0}
 .order>div{grid-template-columns:repeat(3,1fr);gap:10px}.order a{font-size:.95rem;padding:12px 6px}
 .hdr-order{padding:7px 14px}
 .hide-xs{display:none}
-.cities .grid{grid-template-columns:1fr 1fr;gap:14px 12px}.cities .grid a{font-size:.9rem;padding:11px 10px}
+.cities .grid{grid-template-columns:1fr 1fr;gap:14px 12px}.cities .grid span{font-size:.9rem;padding:11px 10px}
 .items{grid-template-columns:1fr}
 .logos{grid-template-columns:repeat(2,1fr)}.logos img{height:80px}
 }
-@media (max-width:480px){footer .wrap{grid-template-columns:1fr}}
-@media (max-width:360px){.wrap{padding:0 14px}.obar>span{display:none}}
+@media (max-width:560px){
+footer{padding:32px 0 calc(20px + env(safe-area-inset-bottom));font-size:.9rem}
+footer .wrap{grid-template-columns:1fr;gap:20px}
+footer .ftag{display:none}
+footer .about{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer .about img{margin:0;height:30px}
+footer .ig{margin:0}
+footer nav b,footer .fcontact b{display:none}
+footer nav{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:2px 22px}
+footer nav a{margin:0;padding:6px 0;color:#fff;font-family:var(--head);font-weight:500}
+footer .fcontact{font-size:.82rem;line-height:1.5}
+footer .al{display:inline}footer .al+.al::before{content:" "}
+footer .copy{padding-top:14px;font-size:.78rem}
+}
+@media (max-width:360px){.wrap{padding:0 14px}}
 """
 
 JS = """
@@ -404,9 +409,9 @@ var d=document;
 var b=d.querySelector('.burger'),m=d.getElementById('mnav');
 if(b&&m){
   b.setAttribute('role','button');b.setAttribute('aria-expanded','false');b.setAttribute('aria-controls','mnav');
-  var set=function(open){m.hidden=!open;b.setAttribute('aria-expanded',open?'true':'false');b.setAttribute('aria-label',open?'Close menu':'Open menu');d.body.classList.toggle('menu-open',open);if(open){var f=m.querySelector('a');if(f)f.focus();}};
-  b.addEventListener('click',function(e){e.preventDefault();set(m.hidden);});
-  b.addEventListener('keydown',function(e){if(e.key===' '){e.preventDefault();set(m.hidden);}});
+  var set=function(open,kb){m.hidden=!open;b.setAttribute('aria-expanded',open?'true':'false');b.setAttribute('aria-label',open?'Close menu':'Open menu');d.body.classList.toggle('menu-open',open);if(open&&kb){var f=m.querySelector('a');if(f)f.focus();}};
+  b.addEventListener('click',function(e){e.preventDefault();set(m.hidden,e.detail===0);});
+  b.addEventListener('keydown',function(e){if(e.key===' '){e.preventDefault();set(m.hidden,true);}});
   d.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}});
   m.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
   window.addEventListener('resize',function(){if(window.innerWidth>900&&!m.hidden)set(false);});
@@ -431,7 +436,7 @@ if(bar&&chips.length&&'IntersectionObserver' in window){
   d.querySelectorAll('.msec').forEach(function(s){io.observe(s);});
 }
 var top=d.querySelector('.totop');
-if(top){top.hidden=false;var onS=function(){top.classList.toggle('show',window.scrollY>900);};window.addEventListener('scroll',onS,{passive:true});onS();}
+if(top){top.hidden=false;var ft=d.querySelector('footer');var onS=function(){var nearEnd=ft&&ft.getBoundingClientRect().top<window.innerHeight;top.classList.toggle('show',window.scrollY>900&&!nearEnd);};window.addEventListener('scroll',onS,{passive:true});onS();}
 var app=(location.search.match(/[?&]app=(swiggy|zomato|ownly)\\b/)||[])[1];
 if(app){d.querySelectorAll('.obtn[data-app="'+app+'"]').forEach(function(a){a.classList.add('pick');});}
 })();
@@ -459,14 +464,8 @@ def order_boxes():
     return f'<div class="order"><span>Order now</span><div>{boxes}</div></div>'
 
 
-def order_bar():
-    links = "".join(f'<a href="order.html?app={k}" style="color:{p["color"]}">{p["label"].replace(" app", "")}</a>'
-                    for k, p in PLATFORMS.items())
-    return f'<div class="obar" role="region" aria-label="Order {NAME}"><span>Order on</span>{links}</div>'
-
-
 def contact_block():
-    rows = [escape(l) for l in ADDRESS]
+    rows = ["".join(f'<span class="al">{escape(l)}</span>' for l in ADDRESS)]
     if CONTACT.get("support_email"):
         e = escape(CONTACT["support_email"])
         rows.append(f'<a href="mailto:{e}">{e}</a>')
@@ -513,7 +512,7 @@ def page(filename, title, description, body, jsonld, noindex=False, extra_head="
 {extra_head}<link rel="stylesheet" href="assets/style.css">
 {ld}
 </head>
-<body{'' if is_order else ' class="has-obar"'}>
+<body>
 <a class="skip" href="#main">Skip to content</a>
 <header><div class="wrap">
 <a class="logo" href="./" aria-label="{NAME} home"><img src="assets/img/logo.png" alt="{NAME}" width="119" height="34"></a>
@@ -521,20 +520,19 @@ def page(filename, title, description, body, jsonld, noindex=False, extra_head="
 <a class="btn sm hdr-order" href="order.html">Order<span class="hide-xs"> now</span></a>
 <a class="burger" href="#footer-nav" aria-label="Open menu"><span></span></a>
 </div>
-<div id="mnav" class="mnav" hidden><nav aria-label="Mobile">{nav}<a href="{CUREFOODS}">About Curefoods</a><a class="btn" href="order.html">Order now</a></nav></div>
+<div id="mnav" class="mnav" hidden><nav aria-label="Mobile">{nav}<a href="{CUREFOODS}">About Curefoods</a></nav></div>
 </header>
 <main id="main" tabindex="-1">
 {body}
 </main>
 <footer><div class="wrap">
 <div class="about"><img src="assets/img/logo.png" alt="{NAME}" width="126" height="36" loading="lazy">
-<p style="margin:0;max-width:360px">{escape(TAGLINE)} {escape(HASHTAG)}</p>
+<p class="ftag">{escape(TAGLINE)} {escape(HASHTAG)}</p>
 <a class="ig" href="{INSTAGRAM}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>Follow @the_eatfit</a></div>
 <nav id="footer-nav" aria-label="Footer"><b>Explore</b><a href="./">Home</a><a href="menu.html">Menu</a><a href="order.html">Order</a><a href="blog.html">Blog</a><a href="faq.html">FAQs</a><a href="{CUREFOODS}">About Curefoods</a></nav>
-<div><b>Contact</b>{contact_block()}</div>
+<div class="fcontact"><b>Contact</b>{contact_block()}</div>
 <div class="copy">&copy; {date.today().year} {NAME}, a Curefoods brand. All rights reserved.</div>
 </div></footer>
-{'' if is_order else order_bar()}
 <script src="assets/site.js" defer></script>
 </body>
 </html>
@@ -617,7 +615,7 @@ def build_home(sections):
                      f'<em>Order now &rarr;</em></a>')
     phil = "".join(f"<h3>{h}</h3><ul>{''.join(f'<li>{x}</li>' for x in pts)}</ul>" for h, pts in PHILOSOPHY)
     p_phil, p_loved = post_by_slug(HOME_POST_LINKS["phil"]), post_by_slug(HOME_POST_LINKS["loved"])
-    cities = "".join(f'<a href="order.html#{c["slug"]}">{escape(c["name"])}</a>' for c in CITIES)
+    cities = "".join(f'<span>{escape(c["name"])}</span>' for c in CITIES)
     body = f"""<section class="hero">
 {pic("assets/img/bowls.jpg", f"{NAME} healthy bowls", 1200, 600, ' fetchpriority="high"')}
 <div class="wrap"><div class="hero-copy">

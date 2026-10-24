@@ -3,9 +3,9 @@ var d=document;
 var b=d.querySelector('.burger'),m=d.getElementById('mnav');
 if(b&&m){
   b.setAttribute('role','button');b.setAttribute('aria-expanded','false');b.setAttribute('aria-controls','mnav');
-  var set=function(open){m.hidden=!open;b.setAttribute('aria-expanded',open?'true':'false');b.setAttribute('aria-label',open?'Close menu':'Open menu');d.body.classList.toggle('menu-open',open);if(open){var f=m.querySelector('a');if(f)f.focus();}};
-  b.addEventListener('click',function(e){e.preventDefault();set(m.hidden);});
-  b.addEventListener('keydown',function(e){if(e.key===' '){e.preventDefault();set(m.hidden);}});
+  var set=function(open,kb){m.hidden=!open;b.setAttribute('aria-expanded',open?'true':'false');b.setAttribute('aria-label',open?'Close menu':'Open menu');d.body.classList.toggle('menu-open',open);if(open&&kb){var f=m.querySelector('a');if(f)f.focus();}};
+  b.addEventListener('click',function(e){e.preventDefault();set(m.hidden,e.detail===0);});
+  b.addEventListener('keydown',function(e){if(e.key===' '){e.preventDefault();set(m.hidden,true);}});
   d.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}});
   m.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
   window.addEventListener('resize',function(){if(window.innerWidth>900&&!m.hidden)set(false);});
@@ -30,7 +30,7 @@ if(bar&&chips.length&&'IntersectionObserver' in window){
   d.querySelectorAll('.msec').forEach(function(s){io.observe(s);});
 }
 var top=d.querySelector('.totop');
-if(top){top.hidden=false;var onS=function(){top.classList.toggle('show',window.scrollY>900);};window.addEventListener('scroll',onS,{passive:true});onS();}
+if(top){top.hidden=false;var ft=d.querySelector('footer');var onS=function(){var nearEnd=ft&&ft.getBoundingClientRect().top<window.innerHeight;top.classList.toggle('show',window.scrollY>900&&!nearEnd);};window.addEventListener('scroll',onS,{passive:true});onS();}
 var app=(location.search.match(/[?&]app=(swiggy|zomato|ownly)\b/)||[])[1];
 if(app){d.querySelectorAll('.obtn[data-app="'+app+'"]').forEach(function(a){a.classList.add('pick');});}
 })();
