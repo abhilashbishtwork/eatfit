@@ -261,15 +261,22 @@ footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:28px}
 footer b{display:block;color:#fff;font-family:var(--head);font-weight:600;margin-bottom:8px}
 footer a{text-decoration:none;display:block;margin:2px 0}
 footer a:hover{color:#fff}
+footer .ig{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:8px 14px;border:1px solid rgba(255,255,255,.25);border-radius:999px;color:#fff;font-family:var(--head);font-weight:600;font-size:.88rem}
+footer .ig:hover{background:rgba(255,255,255,.08)}
 footer img{height:36px;width:auto;filter:brightness(0) invert(1);margin-bottom:12px}
 footer .copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:.82rem}
 @media (max-width:820px){
 .phil .wrap{grid-template-columns:1fr;gap:32px}
 .loved{grid-template-columns:repeat(2,1fr);gap:12px}.loved p{padding:10px 12px 8px;font-size:.9rem;gap:8px}.loved em{padding:0 12px 12px;font-size:.82rem}.loved .nudge{top:8px;left:8px;font-size:.7rem;padding:4px 9px}
-.hero{display:block;min-height:0}
-.hero>img{left:0;height:82vw;object-position:58% center;-webkit-mask-image:none;mask-image:none}
-.hero::before{background:linear-gradient(180deg,rgba(255,255,255,0) 0,rgba(255,255,255,0) calc(82vw - 130px),#fff calc(82vw - 8px),#fff 100%)}
-.hero .wrap{padding-top:calc(82vw - 30px);padding-bottom:32px}
+.hero{flex-direction:column;align-items:stretch;min-height:0;padding:22px 0 30px}
+.hero::before{display:none}
+.hero .wrap,.hero-copy{display:contents}
+.hero-copy>.tag{order:1;margin:0 var(--gut,20px) 6px}
+.hero-copy>h1{order:2;margin:0 var(--gut,20px) 16px}
+.hero>img{order:3;position:static;width:100%;height:auto;aspect-ratio:4/3;object-position:58% center;-webkit-mask-image:none;mask-image:none}
+.hero-copy>p{order:4;margin:16px var(--gut,20px) 16px}
+.hero-copy>.order{order:5;margin:0 var(--gut,20px)}}
+@media (max-width:820px) and (max-height:700px){.hero>img{aspect-ratio:16/10}.hero{padding-top:16px}
 .phil img{max-width:240px}
 .logos{grid-template-columns:repeat(3,1fr)}
 footer .wrap{grid-template-columns:1fr 1fr}footer .about{grid-column:1/-1}}
@@ -333,7 +340,8 @@ def page(filename, title, description, body, jsonld):
 </main>
 <footer><div class="wrap">
 <div class="about"><img src="assets/img/logo.png" alt="Eatfit" width="126" height="36">
-<p style="margin:0;max-width:360px">{escape(TAGLINE)} #HealthyMadeHappier</p></div>
+<p style="margin:0;max-width:360px">{escape(TAGLINE)} #HealthyMadeHappier</p>
+<a class="ig" href="{INSTAGRAM}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>Follow @the_eatfit</a></div>
 <div><b>Explore</b><a href="./">Home</a><a href="menu.html">Menu</a><a href="blog.html">Blog</a><a href="faq.html">FAQs</a><a href="{CUREFOODS_ABOUT}">About Curefoods</a><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram</a></div>
 <div><b>Contact</b>{"<br>".join(escape(l) for l in ADDRESS)}</div>
 <div class="copy">&copy; {date.today().year} Eatfit, a Curefoods brand. All rights reserved.</div>
