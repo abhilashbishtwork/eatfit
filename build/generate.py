@@ -145,10 +145,13 @@ font-weight:600;font-size:.95rem;padding:11px 22px;border-radius:999px;border:2p
 .btns{display:flex;flex-wrap:wrap;gap:10px}
 @media (max-width:560px){.hero .btns .btn{padding:10px 16px;font-size:.88rem}}
 section{padding:72px 0}
-.hero{padding:56px 0 64px;background:linear-gradient(180deg,#fff 0,var(--soft) 100%)}
-.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
-.hero p{font-size:1.15rem;color:var(--muted);max-width:520px;margin:0 0 28px}
-.hero img{border-radius:20px;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;box-shadow:0 18px 40px rgba(31,42,92,.15)}
+.hero{position:relative;padding:0;min-height:min(640px,78vh);display:flex;align-items:center;overflow:hidden;background:var(--soft)}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:65% center}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;
+background:linear-gradient(90deg,rgba(255,255,255,.97) 0,rgba(255,255,255,.9) 34%,rgba(255,255,255,0) 62%)}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-top:64px;padding-bottom:64px}
+.hero-copy{max-width:600px}
+.hero p{font-size:1.15rem;color:var(--muted);max-width:500px;margin:0 0 28px}
 .tag{display:inline-block;font-family:var(--head);font-weight:600;font-size:.8rem;letter-spacing:.08em;
 text-transform:uppercase;color:var(--teal);margin-bottom:12px}
 .phil{background:var(--navy);color:#fff}
@@ -159,8 +162,11 @@ text-transform:uppercase;color:var(--teal);margin-bottom:12px}
 .phil ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .phil li{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:12px 14px;font-weight:600;font-size:.95rem}
 .phil li::before{content:"\\2713";color:var(--pink);font-weight:800;margin-right:8px}
-.loved{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin:24px 0 28px}
-.loved div{border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start;font-weight:600}
+.loved{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:24px 0 32px}
+.loved div{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;transition:transform .15s,box-shadow .15s}
+.loved div:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(31,42,92,.10)}
+.loved img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.loved p{display:flex;gap:10px;align-items:flex-start;margin:0;padding:14px 16px 16px;font-weight:600;line-height:1.35}
 .loved small{display:block;font-weight:400;color:var(--muted)}
 .dot{flex:none;width:14px;height:14px;border:1.5px solid var(--veg);border-radius:3px;position:relative;margin-top:5px}
 .dot::after{content:"";position:absolute;inset:2.5px;border-radius:50%;background:var(--veg)}
@@ -215,8 +221,12 @@ footer a:hover{color:#fff}
 footer img{height:36px;width:auto;filter:brightness(0) invert(1);margin-bottom:12px}
 footer .copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:.82rem}
 @media (max-width:820px){
-.hero .wrap,.phil .wrap{grid-template-columns:1fr;gap:32px}
-.hero{padding:36px 0 48px}.hero img{order:-1;aspect-ratio:16/10}
+.phil .wrap{grid-template-columns:1fr;gap:32px}
+.loved{grid-template-columns:repeat(2,1fr);gap:12px}.loved p{padding:10px 12px 12px;font-size:.9rem;gap:8px}
+.hero{display:block;min-height:0;background:#fff}
+.hero>img{position:static;height:auto;aspect-ratio:16/10;object-position:center}
+.hero::before{display:none}
+.hero .wrap{padding-top:28px;padding-bottom:44px}
 .phil img{max-width:240px}
 .logos{grid-template-columns:repeat(3,1fr)}
 footer .wrap{grid-template-columns:1fr 1fr}footer .about{grid-column:1/-1}}
@@ -317,22 +327,27 @@ def org_ld():
     }
 
 
+def dish_img(item):
+    return "assets/img/dish-" + re.sub(r"[^a-z0-9]+", "-", item.lower()).strip("-") + ".jpg"
+
+
 def build_home(sections):
+    # Top sellers that have a dish photo (assets/img/dish-<slug>.jpg, from our Swiggy listing)
     top = sorted(((i, n, t) for t, _, items in sections for i, n in items
-                  if t not in ("Drinks", "Sugar-free Ice Cream")), key=lambda x: -x[1])[:6]
-    loved = "".join(f"<div>{dot(i)}<span>{escape(tidy(i))}<small>{escape(t)}</small></span></div>"
+                  if os.path.exists(os.path.join(ROOT, dish_img(i)))), key=lambda x: -x[1])[:8]
+    loved = "".join(f'<div><img src="{dish_img(i)}" alt="{escape(tidy(i))}" width="640" height="480" loading="lazy">'
+                    f'<p>{dot(i)}<span>{escape(tidy(i))}<small>{escape(t)}</small></span></p></div>'
                     for i, _, t in top)
     phil = "".join(f"<h3>{h}</h3><ul>{''.join(f'<li>{x}</li>' for x in pts)}</ul>" for h, pts in PHILOSOPHY)
     faq = "".join(f"<details><summary>{escape(q)}</summary><p>{escape(a)}</p></details>" for q, a in FAQ)
-    body = f"""<section class="hero"><div class="wrap">
-<div>
+    body = f"""<section class="hero">
+<img src="assets/img/bowls.jpg" alt="Eatfit healthy bowls" width="1200" height="600">
+<div class="wrap"><div class="hero-copy">
 <span class="tag">#HealthyMadeHappier</span>
 <h1>Healthy food that <span class="accent">tastes like home.</span></h1>
 <p>Calorie-counted bowls, khichdi, curries and more. Made with real ingredients, zero trans fat and no deep frying.</p>
 <div class="btns">{order_buttons()}</div>
-</div>
-<img src="assets/img/bowls.jpg" alt="Eatfit healthy bowls" width="1200" height="600">
-</div></section>
+</div></div></section>
 <section class="phil"><div class="wrap">
 <img src="assets/img/tiger.jpg" alt="The Eatfit tiger holding a bowl" width="664" height="900" loading="lazy">
 <div><span class="tag">Our food philosophy</span>
