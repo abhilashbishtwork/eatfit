@@ -86,7 +86,7 @@ FAQ = [
      "Eatfit delivers in " + ", ".join(CITIES[:-1]) + " and " + CITIES[-1] + ". Bengaluru, Delhi NCR "
      "and Hyderabad are our biggest cities."),
     ("Where can I order Eatfit online?",
-     "Order Eatfit on Swiggy, Zomato, Ownly and Toing. Search for \"Eatfit\" in the app to find the "
+     "Order Eatfit on Swiggy, Zomato and Ownly. Search for \"Eatfit\" in the app to find the "
      "kitchen nearest to you."),
     ("What is the most popular Eatfit dish in my city?",
      "Classic Rajma Chawal leads in Delhi NCR, Chandigarh and Coimbatore. Homely Vegetable Khichdi is "
@@ -523,7 +523,7 @@ Sitemap: {DOMAIN}/sitemap.xml
 - Parent company: Curefoods India Ltd. (https://curefoods.in)
 - Address: {" ".join(ADDRESS)}
 - Cities: {", ".join(CITIES)}
-- Order: Swiggy ({ORDER["Swiggy"]}), Zomato ({ORDER["Zomato"]}), Ownly ({ORDER["Ownly"]}), Toing
+- Order: Swiggy ({ORDER["Swiggy"]}), Zomato ({ORDER["Zomato"]}), Ownly ({ORDER["Ownly"]})
 - Instagram: {INSTAGRAM}
 - Kitchen brands: {", ".join(n for _, n in BRANDS)}
 - Food philosophy: {phil}
