@@ -38,14 +38,14 @@ background:linear-gradient(90deg,rgba(255,255,255,.97) 0,rgba(255,255,255,.9) 34
 .hero p{font-size:1.15rem;color:var(--muted);max-width:500px;margin:0 0 28px}
 .tag{display:inline-block;font-family:var(--head);font-weight:600;font-size:.8rem;letter-spacing:.08em;
 text-transform:uppercase;color:var(--teal);margin-bottom:12px}
-.phil{background:var(--navy);color:#fff}
+.phil{background:#FFF1F7;color:var(--navy)}
 .phil .wrap{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:center}
 .phil img{border-radius:20px;width:100%;height:auto;max-width:340px;aspect-ratio:1/1;object-fit:cover;object-position:center 30%;margin:0 auto}
-.phil h2{color:#fff}
-.phil h3{color:var(--teal);margin-top:24px}
+.phil h2{color:var(--navy)}
+.phil h3{color:var(--pink);margin-top:24px}
 .phil ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.phil li{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:12px 14px;font-weight:600;font-size:.95rem}
-.phil li::before{content:"\2713";color:var(--pink);font-weight:800;margin-right:8px}
+.phil li{background:#fff;border:1px solid #F6D3E3;box-shadow:0 1px 2px rgba(31,42,92,.05);border-radius:12px;padding:12px 14px;font-weight:600;font-size:.95rem}
+.phil li::before{content:"\2713";color:var(--teal);font-weight:800;margin-right:8px}
 .loved{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:24px 0 32px}
 .loved div{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;transition:transform .15s,box-shadow .15s}
 .loved div:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(31,42,92,.10)}
@@ -116,7 +116,7 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
 footer .wrap{grid-template-columns:1fr 1fr}footer .about{grid-column:1/-1}}
 @media (max-width:560px){
 section{padding:52px 0}
-nav{gap:11px}nav a{font-size:.8rem;white-space:nowrap}nav .btn{display:none}header img{height:26px}header .wrap{padding:0 14px}
+nav{gap:11px;overflow-x:auto;scrollbar-width:none}nav a{font-size:.8rem;white-space:nowrap}nav .btn{display:none}header img{height:26px}header .wrap{padding:0 14px}
 
 .items{grid-template-columns:1fr}
 .logos{grid-template-columns:repeat(2,1fr)}.logos img{height:80px}}

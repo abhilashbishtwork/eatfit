@@ -193,14 +193,14 @@ background:linear-gradient(90deg,rgba(255,255,255,.97) 0,rgba(255,255,255,.9) 34
 .hero p{font-size:1.15rem;color:var(--muted);max-width:500px;margin:0 0 28px}
 .tag{display:inline-block;font-family:var(--head);font-weight:600;font-size:.8rem;letter-spacing:.08em;
 text-transform:uppercase;color:var(--teal);margin-bottom:12px}
-.phil{background:var(--navy);color:#fff}
+.phil{background:#FFF1F7;color:var(--navy)}
 .phil .wrap{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:center}
 .phil img{border-radius:20px;width:100%;height:auto;max-width:340px;aspect-ratio:1/1;object-fit:cover;object-position:center 30%;margin:0 auto}
-.phil h2{color:#fff}
-.phil h3{color:var(--teal);margin-top:24px}
+.phil h2{color:var(--navy)}
+.phil h3{color:var(--pink);margin-top:24px}
 .phil ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.phil li{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:12px 14px;font-weight:600;font-size:.95rem}
-.phil li::before{content:"\\2713";color:var(--pink);font-weight:800;margin-right:8px}
+.phil li{background:#fff;border:1px solid #F6D3E3;box-shadow:0 1px 2px rgba(31,42,92,.05);border-radius:12px;padding:12px 14px;font-weight:600;font-size:.95rem}
+.phil li::before{content:"\\2713";color:var(--teal);font-weight:800;margin-right:8px}
 .loved{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:24px 0 32px}
 .loved div{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;transition:transform .15s,box-shadow .15s}
 .loved div:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(31,42,92,.10)}
@@ -271,7 +271,7 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.12);padding
 footer .wrap{grid-template-columns:1fr 1fr}footer .about{grid-column:1/-1}}
 @media (max-width:560px){
 section{padding:52px 0}
-nav{gap:11px}nav a{font-size:.8rem;white-space:nowrap}nav .btn{display:none}header img{height:26px}header .wrap{padding:0 14px}
+nav{gap:11px;overflow-x:auto;scrollbar-width:none}nav a{font-size:.8rem;white-space:nowrap}nav .btn{display:none}header img{height:26px}header .wrap{padding:0 14px}
 
 .items{grid-template-columns:1fr}
 .logos{grid-template-columns:repeat(2,1fr)}.logos img{height:80px}}
@@ -289,7 +289,7 @@ def order_buttons(small=False):
 
 def page(filename, title, description, body, jsonld):
     canonical = DOMAIN + "/" + ("" if filename == "index.html" else filename)
-    links = (("Home", "./", "index.html"), ("Menu", "menu.html", "menu.html"), ("Blog", "blog.html", "blog.html"))
+    links = (("Home", "./", "index.html"), ("Menu", "menu.html", "menu.html"), ("Blog", "blog.html", "blog.html"), ("FAQs", "faq.html", "faq.html"))
     nav = "".join(
         f'<a href="{href}"{CURRENT if key == filename or (key == "blog.html" and filename.startswith("blog-")) else ""}>{label}</a>'
         for label, href, key in links
@@ -330,7 +330,7 @@ def page(filename, title, description, body, jsonld):
 <footer><div class="wrap">
 <div class="about"><img src="assets/img/logo.png" alt="Eatfit" width="126" height="36">
 <p style="margin:0;max-width:360px">{escape(TAGLINE)} #HealthyMadeHappier</p></div>
-<div><b>Explore</b><a href="./">Home</a><a href="menu.html">Menu</a><a href="blog.html">Blog</a><a href="{CUREFOODS_ABOUT}">About Curefoods</a><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram</a></div>
+<div><b>Explore</b><a href="./">Home</a><a href="menu.html">Menu</a><a href="blog.html">Blog</a><a href="faq.html">FAQs</a><a href="{CUREFOODS_ABOUT}">About Curefoods</a><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram</a></div>
 <div><b>Contact</b>{"<br>".join(escape(l) for l in ADDRESS)}</div>
 <div class="copy">&copy; {date.today().year} Eatfit, a Curefoods brand. All rights reserved.</div>
 </div></footer>
@@ -379,7 +379,6 @@ def build_home(sections):
                     f'<p>{dot(i)}<span>{escape(tidy(i))}<small>{escape(t)}</small></span></p></div>'
                     for i, _, t in top)
     phil = "".join(f"<h3>{h}</h3><ul>{''.join(f'<li>{x}</li>' for x in pts)}</ul>" for h, pts in PHILOSOPHY)
-    faq = "".join(f"<details><summary>{escape(q)}</summary><p>{escape(a)}</p></details>" for q, a in FAQ)
     body = f"""<section class="hero">
 <img src="assets/img/bowls.jpg" alt="Eatfit healthy bowls" width="1200" height="600">
 <div class="wrap"><div class="hero-copy">
@@ -405,16 +404,10 @@ def build_home(sections):
 <h2>From the Eatfit kitchens</h2>
 <div class="logos">{"".join(f'<img src="assets/img/{f}" alt="{escape(n)}" loading="lazy">' for f, n in BRANDS)}</div>
 </div></section>
-<div class="cities"><div class="wrap"><p>Now delivering in {"".join(f"<span>{c}</span>" for c in CITIES)}</p></div></div>
-<section class="faq"><div class="wrap" style="max-width:780px">
-<h2>Questions</h2>{faq}
-</div></section>"""
-    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
-              "mainEntity": [{"@type": "Question", "name": q,
-                              "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]}
+<div class="cities"><div class="wrap"><p>Now delivering in {"".join(f"<span>{c}</span>" for c in CITIES)}</p></div></div>"""
     return page("index.html", "Eatfit | Healthy, calorie-counted food delivered",
                 "Eatfit serves calorie-counted bowls, khichdi, curries and more with zero trans fat. "
-                "Order on Swiggy, Zomato or Ownly.", body, [org_ld(), faq_ld])
+                "Order on Swiggy, Zomato or Ownly.", body, [org_ld()])
 
 
 def build_menu(sections):
@@ -510,7 +503,7 @@ Allow: /
 
 Sitemap: {DOMAIN}/sitemap.xml
 """
-    urls = "".join(f"<url><loc>{DOMAIN}/{p}</loc><lastmod>{TODAY}</lastmod></url>" for p in ["", "menu.html", "blog.html"] + [f"blog-{x['slug']}.html" for x in POSTS])
+    urls = "".join(f"<url><loc>{DOMAIN}/{p}</loc><lastmod>{TODAY}</lastmod></url>" for p in ["", "menu.html", "faq.html", "blog.html"] + [f"blog-{x['slug']}.html" for x in POSTS])
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
     menu = "\n".join(f"- {t}: " + "; ".join(tidy(i) for i, _ in items) for t, _, items in sections)
@@ -538,6 +531,7 @@ Sitemap: {DOMAIN}/sitemap.xml
 ## Pages
 - [Home]({DOMAIN}/)
 - [Menu]({DOMAIN}/menu.html)
+- [FAQs]({DOMAIN}/faq.html)
 - [Blog]({DOMAIN}/blog.html)
 {{BLOG_LINKS}}
 """
@@ -556,6 +550,22 @@ NOT_FOUND = """<section><div class="wrap" style="text-align:center">
 
 def nice_date(d):
     return date.fromisoformat(d).strftime("%-d %B %Y")
+
+
+def build_faq():
+    faq = "".join(f"<details><summary>{escape(q)}</summary><p>{escape(a)}</p></details>" for q, a in FAQ)
+    body = f"""<div class="wrap menu-head">
+<span class="tag">FAQs</span>
+<h1>Frequently asked questions</h1>
+<p>Everything you need to know about Eatfit, from our best-sellers to where to order.</p>
+</div>
+<section class="faq" style="padding-top:8px"><div class="wrap"><div style="max-width:780px">{faq}</div></div></section>"""
+    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
+              "mainEntity": [{"@type": "Question", "name": q,
+                              "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]}
+    return page("faq.html", "FAQs | Eatfit",
+                "Answers about Eatfit: best-selling dishes, cities, where to order, calories, protein, veg and Jain options.",
+                body, [faq_ld])
 
 
 def build_blog():
@@ -603,6 +613,7 @@ if __name__ == "__main__":
     write("assets/style.css", CSS.strip() + "\n")
     write("index.html", build_home(sections))
     write("menu.html", build_menu(sections))
+    write("faq.html", build_faq())
     write("blog.html", build_blog())
     for x in POSTS:
         write(f"blog-{x['slug']}.html", build_post(x))

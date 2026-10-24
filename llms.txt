@@ -42,6 +42,7 @@
 ## Pages
 - [Home](https://www.eatfit.in/)
 - [Menu](https://www.eatfit.in/menu.html)
+- [FAQs](https://www.eatfit.in/faq.html)
 - [Blog](https://www.eatfit.in/blog.html)
   - [What "calorie-counted" really means at Eatfit](https://www.eatfit.in/blog-calorie-counted-food.html): Every Eatfit dish is calorie-counted. Here's what that means and how to use it when you order.
   - [Khichdi, but never boring](https://www.eatfit.in/blog-khichdi-never-boring.html): From Quinoa Khichdi to Kathiyawadi Masala, here's why khichdi is one of our most-loved meals.
