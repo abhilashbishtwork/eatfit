@@ -21,15 +21,20 @@ def main():
         if stale(src, dst):
             Image.open(src).save(dst, "WEBP", quality=78, method=6)
 
-    # Share image: the hero photo, scaled to cover 1200x630.
-    hero = os.path.join(IMG, "bowls.jpg")
+    # Share image: the Eatfit logo centred on white, 1200x630.
+    src = os.path.join(IMG, "brand-eatfit.png")
     share = os.path.join(IMG, "share.jpg")
-    if stale(hero, share):
-        im = Image.open(hero).convert("RGB")
-        scale = max(1200 / im.width, 630 / im.height)
-        im = im.resize((round(im.width * scale), round(im.height * scale)), Image.LANCZOS)
-        left, top = (im.width - 1200) // 2, (im.height - 630) // 2
-        im.crop((left, top, left + 1200, top + 630)).save(share, "JPEG", quality=85)
+    if stale(src, share) or stale(os.path.abspath(__file__), share):
+        logo = Image.open(src).convert("RGBA")
+        bbox = logo.getchannel("A").getbbox() if logo.getchannel("A").getextrema()[0] < 255 else None
+        if bbox:
+            logo = logo.crop(bbox)
+        w = 640
+        logo = logo.resize((w, round(logo.height * w / logo.width)), Image.LANCZOS)
+        card = Image.new("RGB", (1200, 630), (255, 255, 255))
+        card.paste(logo, ((1200 - logo.width) // 2, (630 - logo.height) // 2), logo)
+        card.paste((228, 0, 124), (0, 606, 1200, 630))
+        card.save(share, "JPEG", quality=92)
 
     # favicon.ico: the tiger mark from the left of the logo, on white.
     logo = os.path.join(IMG, "logo.png")
