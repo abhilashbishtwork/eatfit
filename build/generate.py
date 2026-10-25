@@ -128,6 +128,7 @@ NUDGES = {
     "Homely Vegetable Khichdi": "#1 in Bengaluru",
     "Cheesy Peri Peri Paneer Bowl": "Spicy pick",
 }
+LOVED = ["Creamy Pesto Paneer Bowl", "Homely Vegetable Khichdi", "Lasooni Methi Paneer with Steam Rice", "Classic Curd Rice"]
 # Dish photos that need replacing with real kitchen photography (NEEDS-INPUT #P1).
 PHOTO_FLAGS = {
     "Dal Makhani Chawal": "near-identical plate, angle and garnish to Black Chana and Dal Tadka Chawal",
@@ -260,7 +261,7 @@ text-transform:uppercase;color:var(--teal-text);margin-bottom:12px}
 .loved img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
 .loved p{display:flex;gap:10px;align-items:flex-start;margin:0;padding:14px 16px 16px;font-weight:600;line-height:1.35}
 .loved small{display:block;font-weight:400;color:var(--muted)}
-.loved-foot{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px}
+.loved-foot{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
 .loved-foot .readmore{margin-top:0}
 .dot{flex:none;width:14px;height:14px;border:1.5px solid var(--veg);border-radius:3px;position:relative;margin-top:5px}
 .dot::after{content:"";position:absolute;inset:2.5px;border-radius:50%;background:var(--veg)}
@@ -596,8 +597,9 @@ def trust_strip():
 
 def build_home(sections):
     # Top sellers that have a dish photo (assets/img/dish-<slug>.jpg, from our Swiggy listing)
+    # Four top sellers with distinct photos (the dal/chana photos are near-identical, NEEDS-INPUT P1)
     top = sorted(((i, n, t) for t, _, items in sections for i, n in items
-                  if os.path.exists(os.path.join(ROOT, dish_img(i)))), key=lambda x: -x[1])[:8]
+                  if tidy(i) in LOVED), key=lambda x: LOVED.index(tidy(x[0])))
     cards = []
     for i, _, t in top:
         flag = (f"<!-- PHOTO-FLAG: {escape(PHOTO_FLAGS[tidy(i)])}; replace with real kitchen photography "
@@ -630,7 +632,7 @@ def build_home(sections):
 <span class="tag">Most loved</span>
 <h2>What everyone's ordering</h2>
 <div class="loved">{"".join(cards)}</div>
-<div class="loved-foot"><a class="btn" href="menu.html">See the full menu</a>
+<div class="loved-foot"><a class="btn" href="menu.html">Explore the full menu &rarr;</a>
 <a class="readmore" href="blog-{p_loved["slug"]}.html">Read: {escape(p_loved["title"])} &rarr;</a></div>
 </div></section>
 <div class="cities"><div class="wrap"><span class="tag">Now delivering in</span>

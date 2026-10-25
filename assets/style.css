@@ -87,7 +87,7 @@ text-transform:uppercase;color:var(--teal-text);margin-bottom:12px}
 .loved img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
 .loved p{display:flex;gap:10px;align-items:flex-start;margin:0;padding:14px 16px 16px;font-weight:600;line-height:1.35}
 .loved small{display:block;font-weight:400;color:var(--muted)}
-.loved-foot{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px}
+.loved-foot{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
 .loved-foot .readmore{margin-top:0}
 .dot{flex:none;width:14px;height:14px;border:1.5px solid var(--veg);border-radius:3px;position:relative;margin-top:5px}
 .dot::after{content:"";position:absolute;inset:2.5px;border-radius:50%;background:var(--veg)}
