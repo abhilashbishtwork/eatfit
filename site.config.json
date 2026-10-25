@@ -1,5 +1,5 @@
 {
-  "_readme": "Single source of truth for the EatFit site build. Run ./build.sh after any change. Keys starting with _ are notes, not used by the build. A null value means 'not supplied yet': the build leaves that field out of the page and out of structured data. See NEEDS-INPUT.md.",
+  "_readme": "Single source of truth for the Eatfit site build. Run ./build.sh after any change. Keys starting with _ are notes, not used by the build. A null value means 'not supplied yet': the build leaves that field out of the page and out of structured data. See NEEDS-INPUT.md.",
   "deployment_mode": "review",
   "canonical_base": {
     "production": "https://www.eatfit.in",
@@ -8,7 +8,7 @@
   "robots_ai_policy": "allow-all",
   "_robots_ai_policy_options": "allow-all | retrieval-only | block-training (see README)",
   "brand": {
-    "name": "EatFit",
+    "name": "Eatfit",
     "parent": "Curefoods",
     "parent_url": "https://curefoods.in/",
     "_VERIFY_tagline": "Site line kept as-is. Official tagline candidate 'Not just a meal - It's a Bowl' not adopted until confirmed. NEEDS-INPUT #B3.",
@@ -30,7 +30,7 @@
     "sub_brands": [
       [
         "brand-eatfit.png",
-        "EatFit"
+        "Eatfit"
       ],
       [
         "brand-gik.png",
@@ -50,7 +50,7 @@
       ]
     ]
   },
-  "_cities_note": "listed_on_site = the brand-owned city list shown on the site (VERIFY: site says 8, curefoods.in lists 9; NEEDS-INPUT #B1). order = links verified to land on an EatFit page for that city; null = no verified link, so no button is shown. Verified 2026-10-25 on desktop web and mobile web (iPhone 13 emulation).",
+  "_cities_note": "listed_on_site = the brand-owned city list shown on the site (VERIFY: site says 8, curefoods.in lists 9; NEEDS-INPUT #B1). order = links verified to land on an Eatfit page for that city; null = no verified link, so no button is shown. Verified 2026-10-25 on desktop web and mobile web (iPhone 13 emulation).",
   "cities": [
     {
       "name": "Bengaluru",
@@ -133,7 +133,7 @@
       }
     }
   ],
-  "_ownly_note": "Ownly has no web ordering. The Ownly link is the brand app link supplied by the owner: on a phone it opens an 'Open in Ownly' screen, on desktop it lands on Ownly's generic home page. It is labelled 'Ownly app' on the site. A per-city EatFit Ownly URL is needed (NEEDS-INPUT #O1).",
+  "_ownly_note": "Ownly has no web ordering. The Ownly link is the brand app link supplied by the owner: on a phone it opens an 'Open in Ownly' screen, on desktop it lands on Ownly's generic home page. It is labelled 'Ownly app' on the site. A per-city Eatfit Ownly URL is needed (NEEDS-INPUT #O1).",
   "platforms": {
     "swiggy": {
       "label": "Swiggy",
@@ -169,7 +169,7 @@
     "papacream_facts": []
   },
   "order_links": {
-    "_note": "Brand-level links supplied by the owner, used by every Order button. Swiggy direct opens the nearest EatFit outlet on mobile web/app but lands on swiggy.com on desktop. Zomato onelink targets the app (desktop lands on zomato.com); owner to share a newer Zomato link. Ownly is app-only. Per-city links in cities[] are kept for llms.txt.",
+    "_note": "Brand-level links supplied by the owner, used by every Order button. Swiggy direct opens the nearest Eatfit outlet on mobile web/app but lands on swiggy.com on desktop. Zomato onelink targets the app (desktop lands on zomato.com); owner to share a newer Zomato link. Ownly is app-only. Per-city links in cities[] are kept for llms.txt.",
     "swiggy": "https://www.swiggy.com/direct/brand/76139?source=swiggy-direct&subSource=generic",
     "zomato": "https://link.zomato.com/xqzv/rx68ggmv",
     "ownly": "https://ownly.food/app/brand/BR112474"

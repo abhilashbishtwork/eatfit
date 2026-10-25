@@ -1,16 +1,16 @@
-"""EatFit blog posts. Newest first. Each body is a list of paragraphs;
+"""Eatfit blog posts. Newest first. Each body is a list of paragraphs;
 a paragraph starting with "## " becomes a sub-heading."""
 
 POSTS = [
     {
         "slug": "calorie-counted-food",
-        "title": "What \"calorie-counted\" really means at EatFit",
+        "title": "What \"calorie-counted\" really means at Eatfit",
         "date": "2026-10-21",
         "image": "assets/img/dish-creamy-pesto-paneer-bowl.jpg",
-        "summary": "Every EatFit dish is calorie-counted. Here's what that means and how to use it when you order.",
+        "summary": "Every Eatfit dish is calorie-counted. Here's what that means and how to use it when you order.",
         "body": [
             "Most of us don't want to weigh our food or log every bite. We just want to know that a meal "
-            "is doing right by us. That's the idea behind calorie-counted food at EatFit.",
+            "is doing right by us. That's the idea behind calorie-counted food at Eatfit.",
             "## Portions you can trust",
             "Every dish on our menu is built to a set recipe and a set portion. Our nutritionists approve "
             "each one, and our kitchens follow the same recipe every time. So the bowl you order on a Monday "
@@ -54,7 +54,7 @@ POSTS = [
         "summary": "You don't need a meal plan to eat more protein. A few simple swaps from our menu go a long way.",
         "body": [
             "Protein keeps you full for longer and helps your body recover, whether you work out or not. "
-            "Most Indian diets can use a little more of it. Here are simple ways to get there with EatFit.",
+            "Most Indian diets can use a little more of it. Here are simple ways to get there with Eatfit.",
             "## Start with dal, rajma and chana",
             "Our Homely Bowls are an easy everyday win. Classic Rajma Chawal, Desi Dal Tadka Chawal, Black "
             "Chana with Steamed Rice and Amritsari Chole Chawal all pair a legume with rice for a balanced, "
@@ -72,9 +72,9 @@ POSTS = [
         "title": "Why we don't deep fry, and what we do instead",
         "date": "2026-09-09",
         "image": "assets/img/bowls.jpg",
-        "summary": "Zero deep frying, zero trans fats, whole grains. The rules behind every EatFit kitchen.",
+        "summary": "Zero deep frying, zero trans fats, whole grains. The rules behind every Eatfit kitchen.",
         "body": [
-            "Good food starts with what you leave out. At EatFit, a few rules apply to every dish, in "
+            "Good food starts with what you leave out. At Eatfit, a few rules apply to every dish, in "
             "every city.",
             "## Zero deep frying",
             "We cook by roasting, grilling, steaming, sautéing and slow-simmering. Each one brings out "

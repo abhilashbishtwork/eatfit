@@ -1,4 +1,4 @@
-"""Builds the EatFit site from site.config.json + build/menu_live.tsv + build/posts.py.
+"""Builds the Eatfit site from site.config.json + build/menu_live.tsv + build/posts.py.
 
 Run ./build.sh from the repo root (it also refreshes derived images). The page
 templates live in this file; every URL, mode and brand fact comes from
