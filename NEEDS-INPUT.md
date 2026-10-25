@@ -8,10 +8,10 @@ Each line lists what's needed, why it's needed, the audit findings it blocks, an
 - **D2 robots.txt location.** Needed: nothing until go-live. Why: crawlers only read robots.txt at the host root, so the copy at abhilashbishtwork.github.io/eatfit/robots.txt is ignored. It takes effect once the site is served from the root of www.eatfit.in. Blocks: [55,69]. Files: none.
 
 ## Brand facts (VERIFY; current site text left unchanged)
-- **B1 City count.** Needed: the confirmed list of EatFit cities. The site says 8; curefoods.in lists 9. Why: conflicting sources. Blocks: [35]. Files: `site.config.json` `cities[]`, which feeds the home page, FAQ, order page, llms.txt and the Restaurant `areaServed`.
+- **B1 City count.** Resolved 25 Oct 2026: ClickHouse shows non-cancelled EatFit orders in all 8 listed cities for 1-24 Oct and in no others. Keep checking monthly. Blocks: [35] (resolved).
 - **B2 Hashtag.** Needed: confirm #HealthyMadeHappier (site) or #BodySaysThanks (recent Instagram bio). Blocks: [33,34,38]. Files: `site.config.json` `brand.hashtag`.
 - **B3 Tagline.** Needed: confirm whether the official tagline "Not just a meal - It's a Bowl" should replace the site's own line. Blocks: [33,34,38]. Files: `site.config.json` `brand.tagline`.
-- **B4 Sub-brand portfolio and logos.** Needed: the confirmed portfolio (the site shows 5; the official announcement lists 8) and official logo files for every brand in it. Why: the current logos were cropped from a single combined image. Blocks: [36,39]. Files: `site.config.json` `brand.sub_brands`, `assets/img/brand-*.png`.
+- **B4 Sub-brand portfolio.** Section removed from the site by the owner (25 Oct 2026). Nothing needed unless it comes back. Blocks: [36,39] (not applicable now).
 - **B5 Other official profiles.** Needed: the official Facebook, LinkedIn, X and YouTube URLs, if they exist. Why: Organization `sameAs` currently lists only the verified Instagram. Blocks: [61]. Files: `site.config.json` `brand.same_as_verified`.
 - **B6 Restaurant schema address.** Needed: confirm whether the Curefoods head-office address (Roopena Agrahara, Bengaluru) is the right address for the EatFit Restaurant schema and footer, or supply the correct one. Why: it's a corporate address, not a kitchen. Blocks: [77]. Files: `site.config.json` `brand.address_lines`, `build/generate.py` `restaurant_ld()`.
 

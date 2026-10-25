@@ -33,7 +33,6 @@ HASHTAG = BRAND["hashtag"]
 INSTAGRAM = BRAND["instagram"]
 CUREFOODS = BRAND["parent_url"]
 ADDRESS = BRAND["address_lines"]
-BRANDS = BRAND["sub_brands"]
 CITIES = [c for c in CONFIG["cities"] if c["listed_on_site"]]
 CITY_NAMES = [c["name"] for c in CITIES]
 PLATFORMS = CONFIG["platforms"]
@@ -266,9 +265,6 @@ text-transform:uppercase;color:var(--teal-text);margin-bottom:12px}
 .dot{flex:none;width:14px;height:14px;border:1.5px solid var(--veg);border-radius:3px;position:relative;margin-top:5px}
 .dot::after{content:"";position:absolute;inset:2.5px;border-radius:50%;background:var(--veg)}
 .dot.nv{border-color:var(--nonveg)}.dot.nv::after{background:var(--nonveg)}
-.brands{padding-top:0}
-.logos{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:20px;align-items:center}
-.logos img{width:100%;height:116px;object-fit:contain;padding:10px 14px;border:1px solid var(--line);border-radius:14px;background:#fff}
 .posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
 .post{display:flex;flex-direction:column;text-decoration:none;border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:border-color .15s,transform .15s}
 .post img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
@@ -363,7 +359,6 @@ header .logo img{height:28px}
 @media (max-width:820px){
 .phil .wrap{grid-template-columns:1fr;gap:32px}
 .phil{padding-top:20px}.phil img{max-width:300px;aspect-ratio:4/5;object-position:center 12%}
-.logos{grid-template-columns:repeat(3,1fr)}
 footer .wrap{grid-template-columns:1fr 1fr}footer .about{grid-column:1/-1}
 .loved{grid-template-columns:repeat(2,1fr);gap:12px}.loved p{padding:10px 12px 8px;font-size:.9rem;gap:8px}.loved em{padding:0 12px 12px;font-size:.82rem}.loved .nudge{top:8px;left:8px;font-size:.7rem;padding:4px 9px}
 .hero{flex-direction:column;align-items:stretch;justify-content:space-between;min-height:calc(100svh - var(--hdr));padding:clamp(18px,4svh,40px) 0 clamp(22px,5svh,48px)}
@@ -385,7 +380,6 @@ section{padding:52px 0}
 .hide-xs{display:none}
 .cities .grid{grid-template-columns:1fr 1fr;gap:14px 12px}.cities .grid span{font-size:.9rem;padding:11px 10px}
 .items{grid-template-columns:1fr}
-.logos{grid-template-columns:repeat(2,1fr)}.logos img{height:80px}
 }
 @media (max-width:560px){
 footer{padding:32px 0 calc(20px + env(safe-area-inset-bottom));font-size:.9rem}
@@ -639,11 +633,6 @@ def build_home(sections):
 <div class="loved-foot"><a class="btn" href="menu.html">See the full menu</a>
 <a class="readmore" href="blog-{p_loved["slug"]}.html">Read: {escape(p_loved["title"])} &rarr;</a></div>
 </div></section>
-<section class="brands"><div class="wrap">
-<span class="tag">Our brands</span>
-<h2>From the {NAME} kitchens</h2>
-<div class="logos">{"".join(f'<img src="assets/img/{f}" alt="{escape(n)}" loading="lazy">' for f, n in BRANDS)}</div>
-</div></section>
 <div class="cities"><div class="wrap"><span class="tag">Now delivering in</span>
 <h2>{len(CITIES)} cities and growing</h2>
 <div class="grid">{cities}</div></div></div>"""
@@ -868,7 +857,6 @@ def build_llms(sections):
 - Cities: {", ".join(CITY_NAMES)}
 - Order: Swiggy ({ORDER_LINKS["swiggy"]}), Zomato ({ORDER_LINKS["zomato"]}), Ownly app ({ORDER_LINKS["ownly"]})
 - Instagram: {INSTAGRAM}
-- Kitchen brands: {", ".join(n for _, n in BRANDS)}
 - Food philosophy: {phil}
 - Prices vary by city and app; see the ordering apps for current prices.
 
