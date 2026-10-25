@@ -4,7 +4,7 @@ base path, then builds a throwaway production copy to confirm the mode flip.
     ./build.sh check
 
 Checks: every URL in sitemap.xml, robots.txt and llms.txt returns 200; every
-internal href/src on every page returns 200; og:image is 1200x630; robots meta
+internal href/src on every page returns 200; og:image is 800x800 (square, so WhatsApp shows a compact preview); robots meta
 matches the deployment mode; JSON-LD parses; no placeholder text; every order
 button lands on order.html.
 """
@@ -82,12 +82,12 @@ def main():
     print(f"indexing files: {len([u for u in refs if u.startswith(BASE)])} canonical-base URLs checked")
 
     # 2. og:image
-    status, data = get(local, BASE + "/assets/img/share-logo.jpg")
+    status, data = get(local, BASE + "/assets/img/share-card.jpg")
     size = Image.open(BytesIO(data)).size if status == 200 else None
-    if status != 200 or size != (1200, 630):
+    if status != 200 or size != (800, 800):
         fail(f"og:image status={status} size={size}")
     else:
-        print("og:image: 200, 1200x630")
+        print("og:image: 200, 800x800")
 
     # 3. Per page checks.
     internal = set()

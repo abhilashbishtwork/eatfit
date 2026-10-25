@@ -11,7 +11,7 @@ This is a static site (plain HTML, one CSS file, a little vanilla JS) for EatFit
 
 `check` does the following:
 - Requests every URL in sitemap.xml, robots.txt and llms*.txt, plus every internal link and asset.
-- Confirms og:image is 1200x630.
+- Confirms og:image is 800x800 (square, so WhatsApp shows a compact preview).
 - Confirms the robots meta matches the mode.
 - Parses all JSON-LD.
 - Scans for placeholder text.

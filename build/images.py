@@ -15,34 +15,23 @@ def stale(src, dst):
 
 def main():
     for src in glob.glob(os.path.join(IMG, "*.jpg")):
-        if os.path.basename(src) == "share-logo.jpg":
+        if os.path.basename(src) == "share-card.jpg":
             continue
         dst = src[:-4] + ".webp"
         if stale(src, dst):
             Image.open(src).save(dst, "WEBP", quality=78, method=6)
 
-    # Share image: Eatfit logo on brand navy (same pattern as Behrouz / EatClub cards).
-    # Navy parts of the logo turn white; the pink glasses stay pink.
-    src = os.path.join(IMG, "brand-eatfit.png")
-    share = os.path.join(IMG, "share-logo.jpg")
+    # Share image: square card (WhatsApp shows square images as a compact thumbnail,
+    # wide 1.91:1 images as a big banner). White Eatfit logo, rendered from the
+    # official SVG, on brand navy.
+    src = os.path.join(IMG, "logo-square-white.png")
+    share = os.path.join(IMG, "share-card.jpg")
     if stale(src, share) or stale(os.path.abspath(__file__), share):
-        navy = (31, 42, 92)
         logo = Image.open(src).convert("RGBA")
-        px = logo.load()
-        for y in range(logo.height):
-            for x in range(logo.width):
-                r, g, b_, a = px[x, y]
-                pinkness = max(0, r - b_) / 255  # glasses are red-heavy, the line art is blue-heavy
-                light = (r + g + b_) / 765
-                if pinkness > 0.25:
-                    px[x, y] = (r, g, b_, a)
-                else:
-                    # dark ink -> white, white paper -> transparent
-                    px[x, y] = (255, 255, 255, min(255, round(a * (1 - light) * 1.7)))
-        w = 620
+        w = 560
         logo = logo.resize((w, round(logo.height * w / logo.width)), Image.LANCZOS)
-        card = Image.new("RGB", (1200, 630), navy)
-        card.paste(logo, ((1200 - logo.width) // 2, (630 - logo.height) // 2), logo)
+        card = Image.new("RGB", (800, 800), (31, 42, 92))
+        card.paste(logo, ((800 - logo.width) // 2, (800 - logo.height) // 2), logo)
         card.save(share, "JPEG", quality=92)
 
     # favicon.ico: the tiger mark from the left of the logo, on white.

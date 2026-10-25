@@ -482,7 +482,7 @@ def page(filename, title, description, body, jsonld, noindex=False, extra_head="
     ld = "".join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>'
                  for j in jsonld)
     robots = '<meta name="robots" content="noindex,nofollow">\n' if (MODE == "review" or noindex) else ""
-    share = BASE + "/assets/img/share-logo.jpg"
+    share = BASE + "/assets/img/share-card.jpg"
     return f"""<!doctype html>
 <html lang="en-IN">
 <head>
@@ -497,9 +497,9 @@ def page(filename, title, description, body, jsonld, noindex=False, extra_head="
 <meta property="og:description" content="{escape(description)}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="{share}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="800">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="{share}">
 <meta name="theme-color" content="#1F2A5C">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -510,7 +510,7 @@ def page(filename, title, description, body, jsonld, noindex=False, extra_head="
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header><div class="wrap">
-<a class="logo" href="./" aria-label="{NAME} home"><img src="assets/img/logo.png" alt="{NAME}" width="119" height="34"></a>
+<a class="logo" href="./" aria-label="{NAME} home"><img src="assets/img/logo.svg" alt="{NAME}" width="119" height="34"></a>
 <nav class="desk" aria-label="Main">{nav}<a href="{CUREFOODS}">About Curefoods</a></nav>
 <a class="btn sm hdr-order" href="{"#order" if filename in ("index.html", "menu.html") else "./#order"}">Order<span class="hide-xs"> now</span></a>
 <a class="burger" href="#footer-nav" aria-label="Open menu"><span></span></a>
@@ -521,7 +521,7 @@ def page(filename, title, description, body, jsonld, noindex=False, extra_head="
 {body}
 </main>
 <footer><div class="wrap">
-<div class="about"><img src="assets/img/logo.png" alt="{NAME}" width="126" height="36" loading="lazy">
+<div class="about"><img src="assets/img/logo.svg" alt="{NAME}" width="126" height="36" loading="lazy">
 <p class="ftag">{escape(TAGLINE)} {escape(HASHTAG)}</p>
 <a class="ig" href="{INSTAGRAM}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>Follow @the_eatfit</a></div>
 <nav id="footer-nav" aria-label="Footer"><b>Explore</b><a href="./">Home</a><a href="menu.html">Menu</a><a href="blog.html">Blog</a><a href="faq.html">FAQs</a><a href="{CUREFOODS}">About Curefoods</a></nav>
@@ -559,7 +559,7 @@ def restaurant_ld():
         "name": NAME,
         "url": BASE + "/",
         "logo": BASE + "/assets/img/logo.png",
-        "image": BASE + "/assets/img/share-logo.jpg",
+        "image": BASE + "/assets/img/share-card.jpg",
         "description": TAGLINE,
         "servesCuisine": ["Indian", "Healthy", "Bowls", "Khichdi", "South Indian"],
         "hasMenu": BASE + "/menu.html",
