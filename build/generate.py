@@ -482,7 +482,7 @@ def page(filename, title, description, body, jsonld, noindex=False, extra_head="
     ld = "".join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>'
                  for j in jsonld)
     robots = '<meta name="robots" content="noindex,nofollow">\n' if (MODE == "review" or noindex) else ""
-    share = BASE + "/assets/img/share.jpg"
+    share = BASE + "/assets/img/share-logo.jpg"
     return f"""<!doctype html>
 <html lang="en-IN">
 <head>
@@ -559,7 +559,7 @@ def restaurant_ld():
         "name": NAME,
         "url": BASE + "/",
         "logo": BASE + "/assets/img/logo.png",
-        "image": BASE + "/assets/img/share.jpg",
+        "image": BASE + "/assets/img/share-logo.jpg",
         "description": TAGLINE,
         "servesCuisine": ["Indian", "Healthy", "Bowls", "Khichdi", "South Indian"],
         "hasMenu": BASE + "/menu.html",

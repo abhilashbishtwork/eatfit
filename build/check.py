@@ -82,7 +82,7 @@ def main():
     print(f"indexing files: {len([u for u in refs if u.startswith(BASE)])} canonical-base URLs checked")
 
     # 2. og:image
-    status, data = get(local, BASE + "/assets/img/share.jpg")
+    status, data = get(local, BASE + "/assets/img/share-logo.jpg")
     size = Image.open(BytesIO(data)).size if status == 200 else None
     if status != 200 or size != (1200, 630):
         fail(f"og:image status={status} size={size}")
